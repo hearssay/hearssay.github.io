@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Scott | LogBook</title>
+  <link rel="stylesheet" href="styles.css"
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DDSX5278LJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DDSX5278LJ');
+</script>	
+
+<script type="text/javascript">
+  function display_c(){
+  var refresh=1000; // Refresh rate in milli seconds
+  mytime=setTimeout('display_ct()',refresh)
+  }
+  
+  function display_ct() {
+  var x = new Date()
+  var x1=x.toISOString().slice(11, 19) + ' Z'
+  document.getElementById('ct').innerHTML = x1;
+  tt=display_c();
+   }
+</script>
+</head>
+
+<body>
+
+<div id="outer">
+<strong>Logbook</strong>
+
+<br><br>
+
+VATSIM: 3517.39<br>
+IVAO: 344.67
+
+<br><br>
+
+<strong>Aircraft Hours</strong>
+
+<br><br>
+
+B77W: 2893.4<br>
+B738: 370.02<br>
+A20N: 598.71<br>
+ 
+</div>
+
+<!--Section 7: Footer-->
+
+<div class="footer">
+  <hr>
+  <footer>  
+    &copy; 2024 <a href="https://twitch.tv/hearssay">Scott's Logbook</a>
+
+<span style="float: right;"><body onload=display_ct();>
+      <span id='ct' ></span>
+      <br>
+    </footer>  
+</div>
+</body>
+</html>

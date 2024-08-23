@@ -1,0 +1,4 @@
+User-Agent: *
+Disallow:
+
+Sitemap: https://hearssay.github.io/sitemap.xml

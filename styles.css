@@ -1,0 +1,186 @@
+/* styles.css */
+
+body { 
+  margin: auto; 
+  padding: 150px; 
+  padding-top: 50px; 
+  padding-bottom: 5px; 
+  color: rgb(0, 0, 0); 
+  background-color: rgb(255, 255, 255);
+  font-family: Montserrat, sans-serif;
+}
+
+#map { top: 0; bottom: 0; width: 100%; }
+
+h1 {
+  margin: 10px;
+  font-size: 2.2em;
+  color: white;
+  font-family: Montserrat, sans-serif;
+}
+
+ul,
+li {
+  font-size: 1em;
+  margin: auto;
+  text-align: left;
+  font-family: Montserrat, sans-serif;
+  color: white;
+}
+
+h2,
+h3 {
+  margin: 10px;
+  font-size: 1.2em;
+  color: white;
+}
+
+h3 {
+  font-size: 1em;
+}
+
+p {
+  font-size: 2vw;
+  margin: auto;
+  text-align: center;
+  font-family: Montserrat, sans-serif;
+  color: white;
+
+}
+
+/**
+* Set rules for how the map overlays
+* (information box and legend) will be displayed
+* on the page. */
+
+strong {
+  color:rgb(0, 183, 255)
+}
+
+i {
+    color:rgb(255, 255, 255);
+    font-style: normal
+  }
+
+.map-overlay {
+  bottom: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.8);
+  margin: auto;
+  font-family: Montserrat, sans-serif;
+  overflow: auto;
+  border-radius: 3px;
+}
+
+#features {
+  top: 150px;
+  height: center;
+  margin-top: 200px;
+  width: 30%;
+}
+
+#inner {
+  display: table;
+  margin: 0 auto;
+  border: 0px solid rgb(255, 255, 255);
+}
+
+#outer {
+
+  width:100%;
+}
+
+a:link {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+
+a:visited {
+  text-decoration: none;
+  color: #ffffff !important;
+}
+
+a:hover {
+  color: rgb(0, 183, 255) !important;
+}
+
+a:active {
+  color: rgb(0, 183, 255) !important;
+}
+
+.footer {
+  background-color:rgb(255, 255, 255);
+  padding:45px 0 20px;
+  font-size:15px;
+  line-height:24px;
+  color:#000000 !important; 
+  text-align: left;
+}
+.footer hr
+{
+  border-top-color:rgb(255, 255, 255);
+  opacity:0.5
+}
+
+.footer a:visited {
+  text-decoration: none;
+  color: #000000 !important;
+}
+.footer a:hover {
+  color: rgb(0, 183, 255) !important;
+}
+
+.footer a:active {
+  color: rgb(0, 183, 255);
+}
+
+.fa-regular,
+.fa-solid {
+  color: #737373;
+}
+
+.fa-brands:hover,
+.fa-regular:hover,
+.fa-solid:hover {
+    color: rgb(0, 183, 255) !important;
+}
+
+.header {
+  overflow: hidden;
+  background-color: rgb(255, 255, 255);
+  padding: 20px 10px;
+  
+}
+
+.header a {
+  float: left;
+  color: #000000 !important;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 1em; 
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+
+.header a:hover {
+  background-color:rgb(255, 255, 255);
+  color: rgb(0, 183, 255) !important;
+}
+
+.header-right {
+  float: right;
+}
+
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  
+  .header-right {
+    float: none;
+  }
+}
