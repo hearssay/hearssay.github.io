@@ -83,6 +83,10 @@ i {
     width: 400px;
 }
 
+#logbook {
+    width: 170px;
+}
+
 a:link {
     text-decoration: none;
     color: rgb(0, 0, 0);
