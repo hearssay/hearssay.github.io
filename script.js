@@ -260,8 +260,8 @@ const hoursCtx = document.getElementById('hoursByAircraft').getContext('2d');
   });
 
   // Yearly Bar Chart
-  const yearlyData = [1126.6, 494.9, 1148.5, 1407.7, 128.54]; // Totals from the table
-  const yearlyLabels = ['2020', '2021', '2022', '2023', '2024'];
+  const yearlyData = [3.03, 1126.6, 494.9, 1148.5, 1407.7, 128.54]; // Totals from the table
+  const yearlyLabels = ['2020', '2021', '2022', '2023', '2024', '2025'];
 
   const yearlyCtx = document.getElementById('yearlyChart').getContext('2d');
   const yearlyChart = new Chart(yearlyCtx, {
