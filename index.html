@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, notranslate">
+    <meta name="author" content="hearsay">
+    <meta name="description" content="flight sim and aviation logbook.">
+    <title>Scott's Logbook.</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<h4>Scott's Logbook.</h4>
+
+<br><br><br>
+
+<div id="outer">
+    <div id="canvas-container">
+        <div class="canvas-section">
+            <canvas id="pirepsByAirline" height="200"></canvas>
+        </div>
+        <div class="canvas-section">
+            <canvas id="hoursByAirline" height="200"></canvas>
+        </div>
+    </div>
+</div>
+
+<br><br><br>
+
+<div id="outer">
+  <div id="canvas-container">
+      <div class="canvas-section">
+          <canvas id="topTenAirports" height="200"></canvas>
+      </div>
+      <div class="canvas-section">
+          <canvas id="hoursByNetwork" height="200"></canvas>
+      </div>
+  </div>
+</div>
+
+<br><br><br>
+
+<div id="outer">
+    <div id="canvas-container">
+        <div class="canvas-section">
+            <canvas id="hoursByAircraft" height="200"></canvas>
+        </div>
+        <div class="canvas-section">
+            <canvas id="pirepsByAircraft" height="200"></canvas>
+        </div>
+    </div>
+</div>
+<br> <br><br> <br>
+<div id="outer">
+    <div id="sections-container">
+        <div class="section" id="logbook">
+            <strong>logbook</strong>
+            <br><br>
+            <span style="color: rgb(121, 190, 255)">VATSIM:</span> 4289.71<br>
+            <span style="color: rgb(121, 190, 255)">IVAO:</span> 344.67<br>
+            <span style="color: rgb(121, 190, 255)">Off-Network:</span> 10.10<br>
+            <span style="color: rgb(121, 190, 255)">Total:</span> 4644.48<br><br>
+        </div>
+        <div class="section">
+            <strong>specs</strong>
+            <br><br>
+<span style="color: rgb(121, 190, 255)">CPU:</span> AMD Ryzen 9<br>
+<span style="color: rgb(121, 190, 255)">GPU:</span> 1070 Ti<br>
+<span style="color: rgb(121, 190, 255)">Cooler:</span> Noctua NH-D15 <br>
+<span style="color: rgb(121, 190, 255)">Motherboard:</span> Asus TUF Gaming <br>
+<span style="color: rgb(121, 190, 255)">RAM:</span> Corsair 64GB <br>
+        </div>
+    
+        <div class="section">
+            <strong>add-ons</strong>
+            <br><br>
+            <a href="https://pmdg.com/" target="_blank">PMDG<br>
+            <a href="https://navigraph.com/" target="_blank">Navigraph</a> <br>
+            <a href="https://parallel42.com/products/flow-pro" target="_blank">Parallel 42 flow pro</a> <br>
+            <a href="https://flightsim.to/file/15033/toolbar-pushback" target="_blank">Toolbar Pushback</a> <br>
+            <a href="https://albar965.github.io/littlenavmap.html" target="_blank">Little Navmap</a> <br>
+
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Section 7: Footer -->
+
+<div class="footer">
+    <hr>
+    <footer style="display: flex; justify-content: space-between; align-items: center;">
+        <div><a href="https://vatsim-radar.com/?pilot=1480399" target="_blank" class="">&copy; 2020 &ndash; 2025</a></div>
+        <div style="text-align: center;">
+            <a href="mailto:sco77@protonmail.com" target="_blank">Email</a> |  
+            <a href="https://twitch.tv/hearssay" target="_blank">Twitch</a>
+        </div>
+        <div>
+            <span id='ct'></span>
+        </div>
+    </footer>  
+</div>
+</body>
+</html>
