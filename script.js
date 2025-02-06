@@ -180,3 +180,112 @@ const hoursCtx = document.getElementById('hoursByAircraft').getContext('2d');
       responsive: true
     }
   });
+
+// Hours over the months and years
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const data2020 = [null, null, null, null, null, null, null, null, null, null, null, 3.03];
+  const data2021 = [87, 41.3, 20.3, 0, 2, 19.2, 280, 369.6, 266.1, 1, 16.1, 24];
+  const data2022 = [11.6, 109.1, 58, 259, 18, 36.7, 0, 0, 0, 2, 0.5, 0];
+  const data2023 = [0, 0, 0.5, 0, 0, 0, 41, 152, 179.5, 334.3, 257.7, 183.5];
+  const data2024 = [155, 101.5, 28.2, 114, 49.5, 18.3, 237.6, 90.1, 209.5, 140.5, 177, 86.5];
+  const data2025 = [94.6, 33.94, null, null, null, null, null, null, null, null, null, null]; // Only partial data
+
+  // Monthly Line Chart
+  const monthlyCtx = document.getElementById('monthlyChart').getContext('2d');
+  const monthlyChart = new Chart(monthlyCtx, {
+    type: 'line',
+    data: {
+      labels: months,
+      datasets: [
+        {
+          label: '2020',
+          data: data2020,
+          borderColor: 'rgb(99, 237, 255)',
+          fill: false,
+        },
+        {
+          label: '2021',
+          data: data2021,
+          borderColor: 'rgb(54, 208, 235)',
+          fill: false,
+        },
+        {
+          label: '2022',
+          data: data2022,
+          borderColor: 'rgb(75, 149, 192)',
+          fill: false,
+        },
+        {
+          label: '2023',
+          data: data2023,
+          borderColor: 'rgb(102, 255, 230)',
+          fill: false,
+        },
+        {
+          label: '2024',
+          data: data2024,
+          borderColor: 'rgb(64, 255, 175)',
+          fill: false,
+        },
+        {
+          label: '2025',
+          data: data2025,
+          borderColor: 'rgb(139, 208, 240)',
+          fill: false,
+        },
+      ]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: 'Month'
+          }
+        },
+        y: {
+          title: {
+            display: true,
+            text: 'Hours'
+          }
+        }
+      },
+      elements: {
+        line: {
+          tension: 0.273 // smooth the line be setting tension default is 0
+        }
+      }
+    }
+  });
+
+  // Yearly Bar Chart
+  const yearlyData = [1126.6, 494.9, 1148.5, 1407.7, 128.54]; // Totals from the table
+  const yearlyLabels = ['2020', '2021', '2022', '2023', '2024'];
+
+  const yearlyCtx = document.getElementById('yearlyChart').getContext('2d');
+  const yearlyChart = new Chart(yearlyCtx, {
+    type: 'bar',
+    data: {
+      labels: yearlyLabels,
+      datasets: [{
+        label: 'Total hours by year',
+        data: yearlyData,
+        backgroundColor: '#79beff',
+        borderColor: '#79beff',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Hours by year'
+          }
+        }
+      }
+    }
+  });
