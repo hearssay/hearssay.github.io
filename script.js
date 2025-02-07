@@ -49,27 +49,6 @@ function display_ct() {
 window.onload = display_c;
 
 // charts
-// Total Hours by Aircraft
-const hoursCtx = document.getElementById('hoursByAircraft').getContext('2d');
-  new Chart(hoursCtx, {
-    type: 'bar',
-    data: {
-      labels: ['B77W', 'B77L', 'B738', 'B38M', 'A20N', 'A320', 'A35K'],
-      datasets: [{
-        label: 'Hours by aircraft',
-        data: [2770.94, 178.96, 404.12, 47.81, 540.21, 7.55, 520.95],
-        backgroundColor: '#79beff',
-        borderColor: '#79beff',
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: true,
-      scales: {
-        y: { beginAtZero: true }
-      }
-    }
-  });
 
   // PIREPs by airline
   const pirepsByAirlineCtx = document.getElementById('pirepsByAirline').getContext('2d');
@@ -87,6 +66,15 @@ const hoursCtx = document.getElementById('hoursByAircraft').getContext('2d');
     },
     options: {
       responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'PIREPs by airline'
+        },
+        legend: {
+          display: false
+        }
+      },
       scales: {
         y: { beginAtZero: true }
       }
@@ -109,6 +97,15 @@ const hoursCtx = document.getElementById('hoursByAircraft').getContext('2d');
     },
     options: {
       responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Hours by airline'
+        },
+        legend: {
+          display: false
+        }
+      },
       scales: {
         y: { beginAtZero: true }
       }
@@ -131,6 +128,15 @@ const hoursCtx = document.getElementById('hoursByAircraft').getContext('2d');
     },
     options: {
       responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Top 10 Visited Airports'
+        },
+        legend: {
+          display: false
+        }
+      },
       scales: {
         y: { beginAtZero: true }
       }
@@ -153,11 +159,51 @@ const hoursCtx = document.getElementById('hoursByAircraft').getContext('2d');
     },
     options: {
       responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'PIREPs by aircraft'
+        },
+        legend: {
+          display: false
+        }
+      },
       scales: {
         y: { beginAtZero: true }
       }
     }
   });
+
+  // Total Hours by Aircraft
+const hoursCtx = document.getElementById('hoursByAircraft').getContext('2d');
+new Chart(hoursCtx, {
+  type: 'bar',
+  data: {
+    labels: ['B77W', 'B77L', 'B738', 'B38M', 'A20N', 'A320', 'A35K'],
+    datasets: [{
+      label: 'Hours by aircraft',
+      data: [2770.94, 178.96, 404.12, 47.81, 540.21, 7.55, 520.95],
+      backgroundColor: '#79beff',
+      borderColor: '#79beff',
+      borderWidth: 1
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      title: {
+        display: true,
+        text: 'Hours by aircraft'
+      },
+      legend: {
+        display: false
+      }
+    },
+    scales: {
+      y: { beginAtZero: true }
+    }
+  }
+});
 
   // Total Hours by Network
   const networkCtx = document.getElementById('hoursByNetwork').getContext('2d');
@@ -177,7 +223,19 @@ const hoursCtx = document.getElementById('hoursByAircraft').getContext('2d');
       }]
     },
     options: {
-      responsive: true
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Hours by network'
+        },
+        legend: {
+          display: false
+        }
+      },
+      scales: {
+        y: { beginAtZero: true }
+      }
     }
   });
 
@@ -237,6 +295,19 @@ const hoursCtx = document.getElementById('hoursByAircraft').getContext('2d');
     },
     options: {
       responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: "Hours by month and year"
+        },
+        legend: {
+          position: 'right',
+           labels: {
+          boxWidth: 10,
+          padding: 5,
+        }
+        }
+      },
       scales: {
         x: {
           title: {
@@ -278,14 +349,17 @@ const hoursCtx = document.getElementById('hoursByAircraft').getContext('2d');
     },
     options: {
       responsive: true,
-      scales: {
-        y: {
-          beginAtZero: true,
-          title: {
-            display: true,
-            text: 'Hours by year'
-          }
+      plugins: {
+        title: {
+          display: true,
+          text: 'Total hours by year'
+        },
+        legend: {
+          display: false
         }
+      },
+      scales: {
+        y: { beginAtZero: true }
       }
     }
   });
