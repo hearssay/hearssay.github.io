@@ -55,10 +55,10 @@ window.onload = display_c;
   new Chart(pirepsByAirlineCtx, {
     type: 'bar',
     data: {
-      labels: ['FDX', 'QTR', 'AAL', 'UAE', 'DAL'],
+      labels: ['QTR', 'AAL', 'CMA', 'TVF', 'UAE'],
       datasets: [{
         label: 'PIREPs by airline',
-        data: [25, 261, 185, 32, 27],
+        data: [269, 161, 31, 9, 31],
         backgroundColor: '#79beff',
         borderColor: '#79beff',
         borderWidth: 1
@@ -86,10 +86,10 @@ window.onload = display_c;
   new Chart(hoursByAirlineCtx, {
     type: 'bar',
     data: {
-      labels: ['FDX', 'QTR', 'AAL', 'UAE', 'DAL'],
+      labels: ['QTR', 'AAL', 'CMA', 'TVF', 'UAE'],
       datasets: [{
         label: 'Hours by airline',
-        data: [116.17, 2453.40, 1298.20, 153.79, 65.71],
+        data: [2623.83, 1179.60, 366.53, 18.53, 150.85],
         backgroundColor: '#79beff',
         borderColor: '#79beff',
         borderWidth: 1
@@ -117,10 +117,10 @@ window.onload = display_c;
   new Chart(topTenAirportsCtx, {
     type: 'bar',
     data: {
-      labels: ['OTHH', 'SBGR', 'KMIA', 'SKBO', 'FACT', 'DGAA', 'KSEA', 'LFPO', 'KDEN', 'LFPG'],
+      labels: ['OTHH', 'SBGR', 'KMIA', 'SKBO', 'FACT', 'LFPO', 'KSEA', 'LSGG', 'KDEN', 'LFPG'],
       datasets: [{
         label: 'Top 10 Visited Airports',
-        data: [197, 162, 155, 150, 45, 39, 31, 25, 20, 15],
+        data: [193, 178, 160, 159, 50, 50, 30, 10, 17, 17],
         backgroundColor: '#79beff',
         borderColor: '#79beff',
         borderWidth: 1
@@ -148,10 +148,10 @@ window.onload = display_c;
   new Chart(pirepsByAircraftCtx, {
     type: 'bar',
     data: {
-      labels: ['B77W', 'B77L', 'B738', 'B38M', 'A20N', 'A320', 'A35K'],
+      labels: ['B77W', 'B77L', 'B738'],
       datasets: [{
         label: 'PIREPs by aircraft',
-        data: [297, 22, 132, 11, 125, 2, 48],
+        data: [365, 65, 234],
         backgroundColor: '#79beff',
         borderColor: '#79beff',
         borderWidth: 1
@@ -179,10 +179,10 @@ const hoursCtx = document.getElementById('hoursByAircraft').getContext('2d');
 new Chart(hoursCtx, {
   type: 'bar',
   data: {
-    labels: ['B77W', 'B77L', 'B738', 'B38M', 'A20N', 'A320', 'A35K'],
+    labels: ['B77W', 'B77L', 'B738'],
     datasets: [{
       label: 'Hours by aircraft',
-      data: [2770.94, 178.96, 404.12, 47.81, 540.21, 7.55, 520.95],
+      data: [3510.75, 662.12, 810.43],
       backgroundColor: '#79beff',
       borderColor: '#79beff',
       borderWidth: 1
@@ -213,7 +213,7 @@ new Chart(hoursCtx, {
       labels: ['VATSIM', 'IVAO', 'Off-network'],
       datasets: [{
         label: 'Hours by network',
-        data: [4289.71, 344.67, 10.10],
+        data: [5006.28, 344.67, 10.10],
         backgroundColor: [
           '#79beff',  // Light Blue
           '#87CEFA',  // Light Sky Blue
@@ -241,12 +241,11 @@ new Chart(hoursCtx, {
 
 // Hours over the months and years
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  const data2020 = [null, null, null, null, null, null, null, null, null, null, null, 3.03];
-  const data2021 = [87, 41.3, 20.3, 0, 2, 19.2, 280, 369.6, 266.1, 1, 16.1, 24];
+  const data2021 = [58.44, 41.3, 20.3, 0, 2, 19.2, 280, 369.6, 266.1, 1, 16.1, 24];
   const data2022 = [11.6, 109.1, 58, 259, 18, 36.7, 0, 0, 0, 2, 0.5, 0];
   const data2023 = [0, 0, 0.5, 0, 0, 0, 41, 152, 179.5, 334.3, 257.7, 183.5];
   const data2024 = [155, 101.5, 28.2, 114, 49.5, 18.3, 237.6, 90.1, 209.5, 140.5, 177, 86.5];
-  const data2025 = [94.6, 33.94, null, null, null, null, null, null, null, null, null, null]; // Only partial data
+  const data2025 = [96.13, 259.73, 424.68, 33.33, null, null, null, null, null, null, null, null]; // Only partial data
 
   // Monthly Line Chart
   const monthlyCtx = document.getElementById('monthlyChart').getContext('2d');
@@ -255,12 +254,6 @@ new Chart(hoursCtx, {
     data: {
       labels: months,
       datasets: [
-        {
-          label: '2020',
-          data: data2020,
-          borderColor: 'rgb(99, 237, 255)',
-          fill: false,
-        },
         {
           label: '2021',
           data: data2021,
@@ -331,8 +324,8 @@ new Chart(hoursCtx, {
   });
 
   // Yearly Bar Chart
-  const yearlyData = [3.03, 1126.6, 494.9, 1148.5, 1407.7, 128.54]; // Totals from the table
-  const yearlyLabels = ['2020', '2021', '2022', '2023', '2024', '2025'];
+  const yearlyData = [1092.16, 494.9, 1148.5, 1408.16, 813.88]; // Totals from the table
+  const yearlyLabels = ['2021', '2022', '2023', '2024', '2025'];
 
   const yearlyCtx = document.getElementById('yearlyChart').getContext('2d');
   const yearlyChart = new Chart(yearlyCtx, {
