@@ -8,9 +8,8 @@
     <meta name="description" content="flight sim and aviation logbook.">
     <title>Scott's Logbook.</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js" defer></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -21,7 +20,7 @@
 <div id="outer">
     <div id="canvas-container">
         <div class="canvas-section">
-            <canvas id="monthlyChart" height="200"></canvas>
+            <canvas id="pirepsByAirline" height="200"></canvas>
         </div>
         <div class="canvas-section">
             <canvas id="hoursByAirline" height="200"></canvas>
@@ -37,23 +36,93 @@
           <canvas id="topTenAirports" height="200"></canvas>
       </div>
       <div class="canvas-section">
-            <canvas id="hoursByAircraft" height="200"></canvas>
-        </div>
+          <canvas id="hoursByNetwork" height="200"></canvas>
+      </div>
   </div>
 </div>
 
 <br><br><br>
 
 <div id="outer">
+    <div id="canvas-container">
+        <div class="canvas-section">
+            <canvas id="hoursByAircraft" height="200"></canvas>
+        </div>
+        <div class="canvas-section">
+            <canvas id="pirepsByAircraft" height="200"></canvas>
+        </div>
+    </div>
+</div>
+<br><br><br>
+
+<div id="outer">
+    <div id="canvas-container">
+        <div class="canvas-section">
+            <canvas id="monthlyChart" height="200"></canvas>
+        </div>
+        <div class="canvas-section">
+            <canvas id="yearlyChart" height="200"></canvas>
+        </div>
+    </div>
+  </div>
+
+<!--here if any problems-->
+
+<br><br><br>
+
+<br><br><br>
+
+<div id="outer">
+    <div id="canvas-container">
+        <div class="canvas-section">
+            <img src="img/distro_blk.png" alt="Photo 1" width="100%">
+        </div>
+        <div class="canvas-section">
+            <img src="img/box_blk.png" alt="Photo 2" width="100%">
+        </div>
+    </div>
+</div>
+
+<br><br><br>
+
+<div id="outer">
+    <div id="canvas-container">
+        <div class="canvas-section">
+            <img src="img/distro_off.png" alt="Photo 3" width="100%">
+        </div>
+        <div class="canvas-section">
+            <img src="img/box_off.png" alt="Photo 4" width="100%">
+        </div>
+    </div>
+</div>
+
+<br><br><br>
+
+<div id="outer">
+    <div id="canvas-container">
+        <div class="canvas-section">
+            <img src="img/distro_on.png" alt="Photo 5" width="100%">
+        </div>
+        <div class="canvas-section">
+            <img src="img/box_on.png" alt="Photo 6" width="100%">
+        </div>
+    </div>
+</div>
+
+
+<!--here if any problems-->
+
+<br><br><br><br>
+<div id="outer">
     <div id="sections-container">
         <div class="section" id="logbook">
-            <strong>data</strong>
+            <strong>logbook</strong>
             <br><br>
             <span style="color: rgb(121, 190, 255)">VATSIM:</span> 5006.28<br>
             <span style="color: rgb(121, 190, 255)">IVAO:</span> 344.67<br>
             <span style="color: rgb(121, 190, 255)">Off-Network:</span> 10.10<br>
             <span style="color: rgb(121, 190, 255)">Total:</span> 5361.05<br>
-            <span style="color: rgb(121, 190, 255)">Longest Flight:</span> 16.83 YPPHLFPO<br><br>
+            <span style="color: rgb(121, 190, 255)">Longest Flight:</span> 16.83<br><br>
         </div>
         <div class="section">
             <strong>specs</strong>
@@ -85,15 +154,15 @@
 <div class="footer">
     <hr>
     <footer style="display: flex; justify-content: space-between; align-items: center;">
-        <div><a href="https://vatsim-radar.com/?pilot=1480399" target="_blank" class="">&copy; 2020 &ndash; 2026</a></div>
+        <div><a href="https://vatsim-radar.com/?pilot=1480399" target="_blank" class="">&copy; 2020 &ndash; 2025</a></div>
         <div style="text-align: center;">
             <a href="about.html">about</a> |
             <a href="mailto:sco77@protonmail.com" target="_blank">contact</a> |  
             <a href="https://twitch.tv/hearssay" target="_blank">twitch</a> |
             <a href="https://x.com/scotthearsay" target="_blank">twitter</a> |
-            <a href="https://vatsim-radar.com/?pilot=1480399" target="_blank">track</a> |
+            <a href="https://vatsim-radar.com/?pilot=1480399" target="_blank">FlightTracker</a> |
             <a href="friends.html">friends</a> |
-            data: 26Dec2025
+            data: as of 02 April 2025
         </div>
         <div>
             <span id='ct'></span>

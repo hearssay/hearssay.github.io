@@ -50,15 +50,46 @@ window.onload = display_c;
 
 // charts
 
+  // PIREPs by airline
+  const pirepsByAirlineCtx = document.getElementById('pirepsByAirline').getContext('2d');
+  new Chart(pirepsByAirlineCtx, {
+    type: 'bar',
+    data: {
+      labels: ['QTR', 'AAL', 'CMA', 'TVF', 'UAE'],
+      datasets: [{
+        label: 'PIREPs by airline',
+        data: [269, 161, 31, 9, 31],
+        backgroundColor: '#79beff',
+        borderColor: '#79beff',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'PIREPs by airline'
+        },
+        legend: {
+          display: false
+        }
+      },
+      scales: {
+        y: { beginAtZero: true }
+      }
+    }
+  });
+
   // Hours by airline
   const hoursByAirlineCtx = document.getElementById('hoursByAirline').getContext('2d');
   new Chart(hoursByAirlineCtx, {
     type: 'bar',
     data: {
-      labels: ['QTR', 'AAL', 'CMA'],
+      labels: ['QTR', 'AAL', 'CMA', 'TVF', 'UAE'],
       datasets: [{
         label: 'Hours by airline',
-        data: [2703.20, 1674.62, 1035.25],
+        data: [2623.83, 1179.60, 366.53, 18.53, 150.85],
         backgroundColor: '#79beff',
         borderColor: '#79beff',
         borderWidth: 1
@@ -81,7 +112,7 @@ window.onload = display_c;
     }
   });
 
-  // most visited airports
+  // Top 5 most visited airports
   const topTenAirportsCtx = document.getElementById('topTenAirports').getContext('2d');
   new Chart(topTenAirportsCtx, {
     type: 'bar',
@@ -100,7 +131,7 @@ window.onload = display_c;
       plugins: {
         title: {
           display: true,
-          text: 'Most Visited Airports'
+          text: 'Top 5 Visited Airports'
         },
         legend: {
           display: false
@@ -112,6 +143,39 @@ window.onload = display_c;
     }
   });
 
+// Pireps by Aircraft
+const pirepsEl = document.getElementById('pirepsByAircraft');
+
+if (pirepsEl) {
+  new Chart(pirepsEl.getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels: ['B77W', 'B77L', 'B738'],
+      datasets: [{
+        label: 'PIREPs by aircraft',
+        data: [365, 65, 234],
+        backgroundColor: '#79beff',
+        borderColor: '#79beff',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'PIREPs by aircraft'
+        },
+        legend: { display: false }
+      },
+      scales: {
+        y: { beginAtZero: true }
+      }
+    }
+  });
+}
+
+
   // Total Hours by Aircraft
 const hoursCtx = document.getElementById('hoursByAircraft').getContext('2d');
 new Chart(hoursCtx, {
@@ -120,7 +184,7 @@ new Chart(hoursCtx, {
     labels: ['B77W', 'B77L', 'B738'],
     datasets: [{
       label: 'Hours by aircraft',
-      data: [3569.65, 1025.83, 817.58],
+      data: [3510.75, 662.12, 810.43],
       backgroundColor: '#79beff',
       borderColor: '#79beff',
       borderWidth: 1
@@ -143,13 +207,47 @@ new Chart(hoursCtx, {
   }
 });
 
-// Hours over quarters and years
-  const months = ['Q1', 'Q2', 'Q3', 'Q4'];
-  const data2021 = [0, 16.02, 753.95, 65.48];
-  const data2022 = [180.07, 327.22, 0, 2.67];
-  const data2023 = [0.85, 0, 429.83, 715.08];
-  const data2024 = [264.98, 211.25, 649.37, 552.65];
-  const data2025 = [780.55,138.60,54.98,269.52]; // Only partial data
+  // Total Hours by Network
+  const networkCtx = document.getElementById('hoursByNetwork').getContext('2d');
+  new Chart(networkCtx, {
+    type: 'bar',
+    data: {
+      labels: ['VATSIM', 'IVAO', 'Off-network'],
+      datasets: [{
+        label: 'Hours by network',
+        data: [5006.28, 344.67, 10.10],
+        backgroundColor: [
+          '#79beff',  // Light Blue
+          '#87CEFA',  // Light Sky Blue
+          '#B0E0E6'  // Powder Blue
+          //'#AFEEEE'   // Pale Turquoise
+        ]
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Hours by network'
+        },
+        legend: {
+          display: false
+        }
+      },
+      scales: {
+        y: { beginAtZero: true }
+      }
+    }
+  });
+
+// Hours over the months and years
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const data2021 = [58.44, 41.3, 20.3, 0, 2, 19.2, 280, 369.6, 266.1, 1, 16.1, 24];
+  const data2022 = [11.6, 109.1, 58, 259, 18, 36.7, 0, 0, 0, 2, 0.5, 0];
+  const data2023 = [0, 0, 0.5, 0, 0, 0, 41, 152, 179.5, 334.3, 257.7, 183.5];
+  const data2024 = [155, 101.5, 28.2, 114, 49.5, 18.3, 237.6, 90.1, 209.5, 140.5, 177, 86.5];
+  const data2025 = [96.13, 259.73, 424.68, 33.33, null, null, null, null, null, null, null, null]; // Only partial data
 
   // Monthly Line Chart
   const monthlyCtx = document.getElementById('monthlyChart').getContext('2d');
@@ -195,7 +293,7 @@ new Chart(hoursCtx, {
       plugins: {
         title: {
           display: true,
-          text: "Hours by quarter and year"
+          text: "Hours by month and year"
         },
         legend: {
           position: 'right',
