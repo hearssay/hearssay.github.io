@@ -226,37 +226,3 @@ new Chart(hoursCtx, {
       }
     }
   });
-
-  // Yearly Bar Chart
-  const yearlyData = [1092.16, 494.9, 1148.5, 1408.16, 813.88]; // Totals from the table
-  const yearlyLabels = ['2021', '2022', '2023', '2024', '2025'];
-
-  const yearlyCtx = document.getElementById('yearlyChart').getContext('2d');
-  const yearlyChart = new Chart(yearlyCtx, {
-    type: 'bar',
-    data: {
-      labels: yearlyLabels,
-      datasets: [{
-        label: 'Total hours by year',
-        data: yearlyData,
-        backgroundColor: '#79beff',
-        borderColor: '#79beff',
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        title: {
-          display: true,
-          text: 'Total hours by year'
-        },
-        legend: {
-          display: false
-        }
-      },
-      scales: {
-        y: { beginAtZero: true }
-      }
-    }
-  });
