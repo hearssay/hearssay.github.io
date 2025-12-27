@@ -79,15 +79,16 @@ i {
   display: flex;
   max-width: var(--content-width);
   margin: 0 auto;
-  gap: 10px;
+  gap: 20px;            /* space between sections */
   justify-content: space-between;
+  flex-wrap: wrap;       /* allows wrapping on smaller screens */
   text-align: left;
 }
 
 .canvas-section {
-    margin: 0 20px;
-    width: 600px;
-
+    margin: 0;
+    flex: 1 1 0;         /* take remaining space, minimum 0 */
+    min-width: 400px;    /* optional: prevent too small on mobile */
 }
 
 #sections-container {
@@ -128,12 +129,11 @@ a:active {
     clear: both;
     position: relative;
     background-color: rgb(255, 255, 255);
-    padding: 45px 0 20px;
+    padding: 20px 0 20px;
     font-size: 15px;
     line-height: 24px;
     color: #000000 !important; 
     text-align: left;
-    margin-top: 25px;
 }
 
 .footer hr {
@@ -153,6 +153,16 @@ a:active {
 .footer a:active {
     color: rgb(0, 183, 255);
 }
+.footer a i {
+    color: #000000; /* match your text color */
+    transition: color 0.2s, transform 0.2s;
+}
+
+.footer a:hover i {
+    color: rgb(0, 183, 255);
+    transform: scale(1.2); /* optional hover effect */
+}
+
 
 .fa-regular,
 .fa-solid {
@@ -240,7 +250,14 @@ h4 {
     font-weight: normal; /* Not bold */
     margin-top: 10px; /* Optional: add space above */
 }
-
+h5 {
+    text-align: left;
+    font-size: 2em;
+    font-family: 'Garamond', serif;
+    color:rgb(0, 183, 255);
+    font-weight: normal; 
+    margin: 30px 0 10px 0; /* top 0, bottom 10px */
+}
 .card-container {
   max-width: var(--content-width);
   margin: 0 auto;
@@ -258,17 +275,22 @@ h4 {
   padding: 12px 20px;
   box-sizing: border-box;
   text-align: left;
-  margin-top: 150px;
- 
-  border: 1px solid #ccc;
-  
+  margin-top: 100px;
 }
 
 .card-title {
   font-weight: 600;
   margin-bottom: 10px;
-  font-size: 1.00em;
+  font-size: 2.00em;
   font-family: 'Garamond', serif; /* Set font to Garamond */
+}
+.card-body {
+    font-size: 1.7em;     /* larger body text */
+}
+
+.card-body .label {
+    font-weight: 700;
+    font-size: 1.0em;     /* match body size, bold label */
 }
 
 .label {
@@ -290,4 +312,64 @@ h4 {
   font-family: 'Garamond', serif;
   font-size: 1em;
   color: rgb(0, 183, 255);
+}
+
+.favorite-streamers a {
+    text-decoration: none;
+    color: #000;
+    position: relative;
+    margin-right: 8px; /* spacing between names */
+}
+
+.favorite-streamers a:not(:last-child)::after {
+    content: '•';
+    color: rgba(0,0,0,0.3); /* light gray dot */
+    margin-left: 8px;
+}
+
+.footer a i {
+    color: #000000; /* icon color */
+    transition: color 0.2s, transform 0.2s;
+    margin-right: 12px; /* space between icons */
+    font-size: 14px;    /* optional: size of icons */
+}
+
+.footer a:last-child i {
+    margin-right: 0; /* no extra space after the last icon */
+}
+
+.footer a:hover i {
+    color: rgb(0, 183, 255);
+    transform: scale(1.2); /* optional hover effect */
+}
+.logbook-section {
+    display: flex;
+    gap: 20px;        /* space between card and map */
+    max-width: 1220px;
+    margin: 0 auto 40px auto;
+    flex-wrap: wrap;  /* allows stacking on smaller screens */
+}
+
+.card {
+    flex: 1 1 300px;  /* card takes available space, min 300px */
+    padding: 20px;
+}
+
+.map-wrapper {
+    flex: 2 1 700px;  /* map is bigger */
+}
+
+.charts-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 1220px;
+    margin: 0 auto;
+}
+
+.chart-container {
+    flex: 1 1 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
 }

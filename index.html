@@ -9,6 +9,7 @@
     <title>Scott's Logbook.</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://kit.fontawesome.com/ce616330f2.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/leaflet.geodesic"></script>
     <script src="routes.js"></script>
@@ -20,49 +21,31 @@
 
 <h4>Scott's Logbook.</h4>
 
-<br><br>
-
-<div id="outer">
-  <div class="card-container">
-    <div class="card">
-      <div class="card-title">Network hours</div>
-      <div class="card-body">
-        <div><span class="label">VATSIM:</span> 5400.57</div>
-        <div><span class="label">IVAO:</span> 344.67</div>
-      </div>
+<div class="logbook-section">
+  <div class="card">
+    <div class="card-title">Network hours</div>
+    <div class="card-body">
+      <div><span class="label">VATSIM:</span> 5400.57</div>
+      <div><span class="label">IVAO:</span> 344.67</div>
     </div>
-    <div class="map-wrapper">
-      <iframe src="flights_map_curved.html" width="100%" height="400"></iframe>
-      <div class="longest-flight">Longest Flight: <span style="color: black;">16.83 YPPH LFPO 27Mar25</span>
   </div>
+
+  <div class="map-wrapper">
+    <iframe src="flights_map_curved.html" width="100%" height="400"></iframe>
+    <div class="longest-flight">
+      Longest Flight: <span style="color:black;">16.83 YPPH LFPO 27Mar25</span>
     </div>
   </div>
 </div>
-</div>
 
-<br><br><br>
-
-<div id="outer">
-    <div id="canvas-container">
-        <div class="canvas-section">
-            <canvas id="monthlyChart" height="200"></canvas>
-        </div>
-        <div class="canvas-section">
-            <canvas id="hoursByAirline" height="200"></canvas>
-        </div>
-    </div>
-</div>
-
-<br><br><br>
-
-<div id="outer">
-  <div id="canvas-container">
-      <div class="canvas-section">
-          <canvas id="topTenAirports" height="200"></canvas>
-      </div>
-      <div class="canvas-section">
-            <canvas id="hoursByAircraft" height="200"></canvas>
-        </div>
+<div class="charts-section">
+  <div class="chart-container">
+    <canvas id="monthlyChart"></canvas>
+    <canvas id="hoursByAirline"></canvas>
+  </div>
+  <div class="chart-container">
+    <canvas id="topTenAirports"></canvas>
+    <canvas id="hoursByAircraft"></canvas>
   </div>
 </div>
 
@@ -74,10 +57,13 @@
     <footer style="display: flex; justify-content: space-between; align-items: center;">
         <div><a href="https://vatsim-radar.com/?pilot=1480399" target="_blank" class="">&copy; 2020 &ndash; 2026</a></div>
         <div style="text-align: center;">
-            <a href="https://twitch.tv/hearssay" target="_blank">twitch</a> |
-            <a href="https://vatsim-radar.com/?pilot=1480399" target="_blank">track</a> |
-            <a href="friends.html">friends</a> |
-            data: 26Dec2025
+            <a href="index.html" target="_blank"><i class="fa-regular fa-house"></i></a> 
+            <a href="about.html" target="_blank"><i class="fa-regular fa-address-card"></i></a>   
+            <a href="https://vatsim-radar.com/?pilot=1480399" target="_blank"><i class="fa-solid fa-plane-up"></i></a> 
+            <a href="https://twitch.tv/hearssay" target="_blank"><i class="fa-brands fa-twitch"></i></a> 
+            <a href="https://www.tiktok.com/@hearsssay" target="_blank"><i class="fa-brands fa-tiktok"></i></a> 
+            <a href="https://www.instagram.com/hearssay/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://x.com/hearsssay" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
         </div>
         <div>
             <span id='ct'></span>
