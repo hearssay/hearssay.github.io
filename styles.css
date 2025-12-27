@@ -1,5 +1,9 @@
 /* styles.css */
 
+:root {
+  --content-width: 1220px;
+}
+
 body { 
     margin: auto; 
     padding: 150px; 
@@ -72,11 +76,12 @@ i {
 }
 
 #canvas-container {
-    display: flex;
-    justify-content: center;
-    text-align: left;
-    margin: 0 auto;
-    gap: 20px;
+  display: flex;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  gap: 10px;
+  justify-content: space-between;
+  text-align: left;
 }
 
 .canvas-section {
@@ -233,5 +238,56 @@ h4 {
     font-family: 'Garamond', serif; /* Set font to Garamond */
     color:rgb(0, 183, 255);
     font-weight: normal; /* Not bold */
-    margin-top: 50px; /* Optional: add space above */
+    margin-top: 10px; /* Optional: add space above */
+}
+
+.card-container {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  transform: translateX(40px);
+  gap: 20px;
+
+
+}
+
+.card {
+  width: 600px;             
+  padding: 12px 20px;
+  box-sizing: border-box;
+  text-align: left;
+  margin-top: 150px;
+ 
+  border: 1px solid #ccc;
+  
+}
+
+.card-title {
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 1.00em;
+  font-family: 'Garamond', serif; /* Set font to Garamond */
+}
+
+.label {
+  color: rgb(121, 190, 255);
+}
+
+.map-wrapper {
+  flex: 1;      /* take remaining space */
+  min-width: 600px; /* optional, prevent map from shrinking too much */
+}
+
+.map-wrapper iframe {
+    border: none;   /* removes default iframe border */
+}
+
+.longest-flight {
+  margin: 20px auto 0;
+  text-align: center;
+  font-family: 'Garamond', serif;
+  font-size: 1em;
+  color: rgb(0, 183, 255);
 }
