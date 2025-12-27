@@ -322,11 +322,9 @@ h5 {
     flex: 1 1 300px;  /* card takes available space, min 300px */
     padding: 20px;
 }
-
 .map-wrapper {
     flex: 2 1 750px;  /* map is bigger */
 }
-
 .charts-section {
     display: flex;
     flex-wrap: wrap;
@@ -334,7 +332,6 @@ h5 {
     max-width: 1220px;
     margin: 0 auto;
 }
-
 .chart-container {
     flex: 1 1 500px;
     display: flex;
@@ -344,7 +341,6 @@ h5 {
 .logbook-section .card {
   order: 2;
 }
-
 .logbook-section .map-wrapper {
   order: 1;
 }
