@@ -1,21 +1,3 @@
-// images
-window.onload = function() {
-    let slideIndex = 0;
-    showSlides();
-
-    function showSlides() {
-        let slides = document.getElementsByClassName("slides");
-        for (let i = 0; i < slides.length; i++) {
-            slides[i].classList.remove("show");
-        }
-        slideIndex++;
-        if (slideIndex > slides.length) {slideIndex = 1}    
-        slides[slideIndex - 1].classList.add("show");
-        setTimeout(showSlides, 10000); // Change image every 10 seconds
-    }
-};
-
-
 // analytics
 (function() {
     var gaScript = document.createElement('script');
@@ -225,4 +207,11 @@ new Chart(hoursCtx, {
         }
       }
     }
+  });
+
+fetch("https://snowy-water-1747.san-e33.workers.dev/")
+  .then(r => r.json())
+  .then(d => {
+    document.getElementById("vatsim-hours").textContent =
+      d.pilot.toFixed(2);
   });

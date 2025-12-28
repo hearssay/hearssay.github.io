@@ -345,3 +345,12 @@ h5 {
   order: 1;
 }
 
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
