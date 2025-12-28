@@ -393,3 +393,15 @@ h5 {
 html {
   -webkit-text-size-adjust: 100%;
 }
+
+.atw-photo {
+  max-width: 1220px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+.atw-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
