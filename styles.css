@@ -6,18 +6,14 @@
 
 body { 
     margin: auto; 
+    padding: 150px; 
+    padding-top: 5px; 
+    padding-bottom: 5px; 
     color: rgb(0, 0, 0); 
     background-color: rgb(255, 255, 255);
     font-family: Montserrat, sans-serif;
     font-size: 1em;
 }
-
-.page-content {
-  max-width: 1220px;
-  margin: 0 auto;
-  padding: 0 150px;
-}
-
 
 h1 {
     margin: 10px;
@@ -127,71 +123,42 @@ a:active {
     color: rgb(0, 183, 255) !important;
 }
 
-footer.site-footer-bar {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  background: white;
-  border-top: 1px solid rgba(0, 183, 255, 0.12);
+.footer {
+    clear: both;
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    padding: 20px 0 20px;
+    font-size: 15px;
+    line-height: 24px;
+    color: #000000 !important; 
+    text-align: left;
 }
 
-.footer-inner {
-  max-width: 1220px;
-  margin: 0 auto;
-  padding: 20px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.footer hr {
+    border-top-color: rgb(255, 255, 255);
+    opacity: 0.5;
 }
 
-.footer-icons a {
-  margin-right: 12px;
-}
-
-.footer-icons a:last-child {
-  margin-right: 0;
-}
-
-
-.site-footer-bar a:visited {
+.footer a:visited {
     text-decoration: none;
     color: #000000 !important;
 }
 
-.site-footer-bar a:hover {
+.footer a:hover {
     color: rgb(0, 183, 255) !important;
 }
 
-.site-footer-bar a:active {
+.footer a:active {
     color: rgb(0, 183, 255);
 }
-.site-footer-bar a i {
+.footer a i {
     color: #000000; /* match your text color */
     transition: color 0.2s, transform 0.2s;
 }
 
-.site-footer-bar a:hover i {
+.footer a:hover i {
     color: rgb(0, 183, 255);
     transform: scale(1.2); /* optional hover effect */
-}
-
-.site-footer-bar a i {
-    color: #000000; /* icon color */
-    transition: color 0.2s, transform 0.2s;
-    margin-right: 12px; /* space between icons */
-    font-size: 14px;    /* optional: size of icons */
-}
-
-.site-footer-bar a:last-child i {
-    margin-right: 0; /* no extra space after the last icon */
-}
-
-.site-footer-bar a:hover i {
-    color: rgb(0, 183, 255);
-    transform: scale(1.2); /* optional hover effect */
-}
-.footer-middle {
-    text-align: center;
-    margin-top: 10px;
 }
 
 
@@ -206,7 +173,10 @@ footer.site-footer-bar {
     color: rgb(0, 183, 255) !important;
 }
 
-
+.footer-middle {
+    text-align: center;
+    margin-top: 10px;
+}
 
 .live-text {
     color: #00ffff;
@@ -238,25 +208,22 @@ header {
   background: white;
   margin-bottom: 27px;
 }
-header.site-header-bar {
+.site-header-bar {
   position: sticky;
   top: 0;
   z-index: 10;
   background: white;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  border-bottom: 1px solid rgba(0, 183, 255, 0.12);
+  border-bottom: 1px solid rgba(0, 183, 255, 0.12); /* full width */
 }
 
 .header-inner {
-  max-width: 1220px;
-  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 0 auto;
+  border-bottom: 1px solid rgba(0, 183, 255, 0.12);
   padding-bottom: 10px;
 }
-
 
 .site-header {
   text-align: left;
@@ -362,11 +329,22 @@ h5 {
     color: rgba(0,0,0,0.3); /* light gray dot */
     margin-left: 8px;
 }
-.favorite-streamers {
-  margin-bottom: 70px;
+
+.footer a i {
+    color: #000000; /* icon color */
+    transition: color 0.2s, transform 0.2s;
+    margin-right: 12px; /* space between icons */
+    font-size: 14px;    /* optional: size of icons */
 }
 
+.footer a:last-child i {
+    margin-right: 0; /* no extra space after the last icon */
+}
 
+.footer a:hover i {
+    color: rgb(0, 183, 255);
+    transform: scale(1.2); /* optional hover effect */
+}
 .logbook-section {
     display: flex;
     gap: 20px;        /* space between card and map */
@@ -402,6 +380,3 @@ h5 {
 html {
   -webkit-text-size-adjust: 100%;
 }
-
-
-
