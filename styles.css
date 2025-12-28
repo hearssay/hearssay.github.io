@@ -354,3 +354,6 @@ a:active {
     font-size: inherit;
     font-weight: inherit;
 }
+.body-text {
+  font-family: Montserrat, sans-serif;
+}
