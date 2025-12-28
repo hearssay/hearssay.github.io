@@ -214,6 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(r => r.json())
     .then(d => {
       document.getElementById("vatsim-hours").textContent =
-        Number(d.pilot).toFixed(2);
+       Number(d.pilot).toFixed(2);
+
     });
 });
