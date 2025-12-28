@@ -209,7 +209,7 @@ new Chart(hoursCtx, {
     }
   });
 
-fetch("https://snowy-water-1747.san-e33.workers.dev")
+fetch("https://sparkling-mountain-a82b.san-e33.workers.dev/")
   .then(r => {
     if (!r.ok) throw new Error("fetch failed");
     return r.json();
