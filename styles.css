@@ -78,12 +78,13 @@ i {
   text-align: left;
 }
 
-.canvas-section {
+.canvas-section, {
     margin: 0;
     flex: 1 1 0;         /* take remaining space, minimum 0 */
     min-width: 100px;    /* optional: prevent too small on mobile */
     font-family: Montserrat, sans-serif;
     font-size: 1em;
+    line-height: 1.5;
     color: #000000;
 }
 
@@ -344,12 +345,3 @@ h5 {
   order: 1;
 }
 
-a,
-a:link,
-a:visited,
-a:hover,
-a:active {
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-}
