@@ -78,7 +78,8 @@ i {
   text-align: left;
 }
 
-.canvas-section, {
+.canvas-section,
+.canvas-section a {
     margin: 0;
     flex: 1 1 0;         /* take remaining space, minimum 0 */
     min-width: 100px;    /* optional: prevent too small on mobile */
