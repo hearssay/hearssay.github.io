@@ -271,13 +271,14 @@ header.site-header-bar {
 .header-nav a {
   font-size: 0.9em;
   text-decoration: none;
-  color: rgb(0, 183, 255);
-}
-
-.header-nav a {
+  color: #000;
   font-family: 'Garamond', serif;
   font-size: 1.4em;   /* keep or adjust */
 }
+.header-nav a:hover {
+  color: rgb(0, 183, 255) !important;
+}
+
 
 h5 {
     text-align: left;
@@ -295,8 +296,6 @@ h5 {
   align-items: flex-start;
   transform: translateX(40px);
   gap: 20px;
-
-
 }
 
 .card {
