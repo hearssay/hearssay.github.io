@@ -288,6 +288,9 @@ h5 {
     color: #000;
     position: relative;
     margin-right: 8px; /* spacing between names */
+    font-size: 1em;
+    font-family: Montserrat, sans-serif;
+
 }
 
 .favorite-streamers a:not(:last-child)::after {
