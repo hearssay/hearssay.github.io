@@ -209,12 +209,9 @@ new Chart(hoursCtx, {
     }
   });
 
-document.addEventListener("DOMContentLoaded", () => {
-  fetch("https://snowy-water-1747.san-e33.workers.dev/")
-    .then(r => r.json())
-    .then(d => {
-      document.getElementById("vatsim-hours").textContent =
-       Number(d.pilot).toFixed(2);
-
-    });
-});
+fetch("https://snowy-water-1747.san-e33.workers.dev/")
+  .then(r => r.json())
+  .then(d => {
+    document.getElementById("vatsim-hours").textContent =
+      d.pilot.toFixed(2);
+  });
