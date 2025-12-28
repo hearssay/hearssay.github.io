@@ -209,11 +209,11 @@ new Chart(hoursCtx, {
     }
   });
 
-function updateVatsimHours() {
-  fetch(`https://snowy-water-1747.san-e33.workers.dev/?_=${Date.now()}`, { cache: "no-store" })
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("https://snowy-water-1747.san-e33.workers.dev/")
     .then(r => r.json())
     .then(d => {
-      document.getElementById("vatsim-hours").textContent = d.pilot.toFixed(2);
+      document.getElementById("vatsim-hours").textContent =
+        Number(d.pilot).toFixed(2);
     });
-}
-updateVatsimHours();
+});
