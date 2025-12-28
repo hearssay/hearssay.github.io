@@ -124,14 +124,12 @@ a:active {
 }
 
 footer.site-footer-bar {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
   background: white;
   border-top: 1px solid rgba(0, 183, 255, 0.12);
 }
 
 .footer-inner {
-  max-width: 1220px;
+  max-width: var(--content-width);
   margin: 0 auto;
   padding: 20px 0;
   display: flex;
@@ -239,13 +237,11 @@ header.site-header-bar {
   top: 0;
   z-index: 10;
   background: white;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
   border-bottom: 1px solid rgba(0, 183, 255, 0.12);
 }
 
 .header-inner {
-  max-width: 1220px;
+  max-width: var(--content-width);
   margin: 0 auto;
   display: flex;
   align-items: center;
