@@ -29,3 +29,12 @@ function display_ct() {
 
 // Initialize on page load
 window.onload = display_c;
+
+// hamburger
+
+const hamburger = document.getElementById('hamburger');
+const nav = document.getElementById('header-nav');
+
+hamburger.addEventListener('click', () => {
+  nav.classList.toggle('active');
+});
