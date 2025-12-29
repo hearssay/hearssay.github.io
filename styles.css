@@ -483,7 +483,7 @@ header .hamburger {
   .atw-photo img,
   .map-wrapper iframe {
     width: 100%;
-    height: auto;
+    height: 300px;
     margin: 0 auto;
   }
 
