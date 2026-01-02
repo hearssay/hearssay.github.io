@@ -8,7 +8,7 @@
       labels: ['QTR', 'AAL', 'CMA'],
       datasets: [{
         label: 'Hours by airline',
-        data: [2703.20, 1674.62, 1035.25],
+        data: [2710.88, 1674.62, 1083.42],
         backgroundColor: '#79beff',
         borderColor: '#79beff',
         borderWidth: 1
@@ -39,7 +39,7 @@
       labels: ['OTHH', 'KMIA', 'SBGR', 'SKBO', 'LFPO'],
       datasets: [{
         label: 'Top 10 Visited Airports',
-        data: [198, 192, 190, 178, 64],
+        data: [198, 196, 190, 180, 68],
         backgroundColor: '#79beff',
         borderColor: '#79beff',
         borderWidth: 1
@@ -57,7 +57,7 @@
         }
       },
       scales: {
-        y: { min: 60, beginAtZero: false }
+        y: { min: 175, beginAtZero: false }
       }
     }
   });
@@ -70,7 +70,7 @@ new Chart(hoursCtx, {
     labels: ['B77W', 'B77L', 'B738'],
     datasets: [{
       label: 'Hours by aircraft',
-      data: [3569.65, 1025.83, 817.58],
+      data: [3577.33, 1074.00, 817.58],
       backgroundColor: '#79beff',
       borderColor: '#79beff',
       borderWidth: 1
@@ -99,7 +99,8 @@ new Chart(hoursCtx, {
   const data2022 = [180.07, 327.22, 0, 2.67];
   const data2023 = [0.85, 0, 429.83, 715.08];
   const data2024 = [264.98, 211.25, 649.37, 552.65];
-  const data2025 = [780.55,138.60,54.98,269.52]; // Only partial data
+  const data2025 = [780.55,138.60,54.98,319.05]; 
+  const data2026 = [6.32,0.00,0.00,0.00];
 
   // Monthly Line Chart
   const monthlyCtx = document.getElementById('monthlyChart').getContext('2d');
@@ -112,31 +113,37 @@ new Chart(hoursCtx, {
           label: '2021',
           data: data2021,
           borderColor: 'rgb(54, 208, 235)',
-          fill: false,
+          hidden: true,
         },
         {
           label: '2022',
           data: data2022,
           borderColor: 'rgb(75, 149, 192)',
-          fill: false,
+          hidden: true,
         },
         {
           label: '2023',
           data: data2023,
           borderColor: 'rgb(102, 255, 230)',
-          fill: false,
+          hidden: true,
         },
         {
           label: '2024',
           data: data2024,
           borderColor: 'rgb(64, 255, 175)',
-          fill: false,
+          hidden: true,
         },
         {
           label: '2025',
           data: data2025,
           borderColor: 'rgb(139, 208, 240)',
-          fill: false,
+          hidden: true,
+        },
+        {
+          label: '2026',
+          data: data2026,
+          borderColor: 'rgb(255, 153, 255)',
+          hidden: false,
         },
       ]
     },
