@@ -516,3 +516,33 @@ header .hamburger {
   }
 }
 
+
+/* ===== Live Flight ===== */
+
+@keyframes vatsimPulse {
+  0%   { color: rgba(0,183,255,0.15); }
+  40%  { color: rgba(0,183,255,0.3); }
+  70%  { color: rgba(0,183,255,0.6); }
+  100% { color: rgba(0,183,255,1); }
+}
+
+.vatsim-live-icon {
+  animation: vatsimPulse 3.5s ease-in-out infinite alternate;
+}
+
+/* tooltip style */
+.vatsim-tooltip {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.95);
+  color: #000;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s;
+  white-space: nowrap;
+  z-index: 9999;
+  transform: translateX(-50%) translateY(-8px); /* center horizontally & slightly above */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2); /* subtle shadow for contrast */
+}
