@@ -108,6 +108,8 @@ async function updateTooltipData() {
     const arr = (pilot.flight_plan.arrival || "").trim().toUpperCase();
     const alt = Math.round(pilot.altitude || 0);
     const gs = Math.round(pilot.groundspeed || 0);
+    const cs = pilot.callsign || "-";
+    const ac = pilot.flight_plan.aircraft_short || "-";
     const dest = DESTS[arr];
 
     let eta = "-";
@@ -126,7 +128,7 @@ async function updateTooltipData() {
       eta = `${h}:${m.toString().padStart(2, "0")}`;
     }
 
-    return `${dep} ${arr} ${alt} ${gs} ${eta}`;
+    return `${cs} ${ac} ${dep} ${arr} ${alt} ${gs} ${eta}`;
   } catch (e) {
     console.error("VATSIM tooltip fetch error", e);
     return null;
