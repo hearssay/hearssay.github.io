@@ -44,10 +44,12 @@ hamburger.addEventListener('click', () => {
 const VATSIM_CID = 1480399;
 const VATSIM_API = "https://data.vatsim.net/v3/vatsim-data.json";
 const DESTS = {
-  KMIA: { lat: 25.79325, lon: -80.29056 },
-  SKBO: { lat: 4.70159,  lon: -74.14695 },
+  KMIA: { lat: 25.792987832598254, lon: -80.2850482728599 },
+  SKBO: { lat: 4.69739289,  lon: -74.1461915023847 }, 
   OTHH: { lat: 25.27306, lon: 51.60806 },
-  SBGR: { lat: -23.43556, lon: -46.47306 }
+  SBGR: { lat: -23.43556, lon: -46.47306 },
+  LFPO: { lat: 48.7248853785618, lon: 2.360721046615247 },  
+  LFMN: { lat: 43.658046416687256, lon: 7.214585152243522 }  
 };
 
 function haversineNM(lat1, lon1, lat2, lon2) {
