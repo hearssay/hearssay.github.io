@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Flight Routes</title>
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.18.0/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v3.18.0/mapbox-gl.css" rel="stylesheet"/>
+  <style>
+    body { margin:0 }
+    #map { width:100vw; height:100vh }
+  </style>
+</head>
+<body>
+
+<div style="
+  position:absolute;
+  top:10px;
+  left:10px;
+  z-index:1;
+  background:white;
+  padding:8px 12px;
+  font-family:sans-serif;
+  font-size:13px;
+  border-radius:4px;
+">
+
+  <div id="filters">
+    <label><input type="checkbox" value="QTR" checked> QTR</label><br>
+    <label><input type="checkbox" value="AAL" checked> AAL</label><br>
+    <label><input type="checkbox" value="CMA" checked> CMA</label>
+  </div>
+
+  <hr style="margin:6px 0">
+
+  <label>
+    <input type="checkbox" id="globeToggle">
+    Globe
+  </label>
+
+</div>
+
+
+
+<div id="map"></div>
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiaW1oZWFyc2F5IiwiYSI6ImNrcGhodXZ4ODBoN3gyb2prMGY2OWYyMGgifQ.aZwuj2S13paIiQdMq-1S3A';
+
+const map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/light-v11',
+  projection: 'mercator',
+  center: [-17, 7],
+  zoom: 0.9
+});
+
+map.on('load', () => {
+   map.resize();
+  map.addSource('routes', {
+    type: 'geojson',
+    data: 'routes.geojson'
+  });
+
+  map.addLayer({
+    id: 'routes',
+    type: 'line',
+    source: 'routes',
+    layout: {
+      'line-join': 'round',
+      'line-cap': 'round'
+    },
+    paint: {
+      'line-color': ['get', 'color'],
+      'line-width': [
+        'max',
+        0.6,
+        ['*', ['get', 'width'], 0.3]
+      ],
+      'line-opacity': 0.8
+    }
+  });
+
+  map.setFog({});
+});
+
+document.getElementById('globeToggle').addEventListener('change', e => {
+  if (e.target.checked) {
+    const center = map.getCenter();
+    const zoom = map.getZoom();
+
+    map.setProjection('globe');
+    map.setFog({});
+    map.easeTo({ center, zoom });
+  } else {
+    map.setProjection('mercator');
+    map.setFog(null);
+  }
+});
+
+const checkboxes = document.querySelectorAll('#filters input');
+
+function updateFilter() {
+  const active = Array.from(checkboxes)
+    .filter(c => c.checked)
+    .map(c => c.value);
+
+  if (active.length === 0) {
+    map.setFilter('routes', ['==', 'airline', '___none___']);
+  } else {
+    map.setFilter('routes', ['in', 'airline', ...active]);
+  }
+}
+
+checkboxes.forEach(c => c.addEventListener('change', updateFilter));
+
+
+</script>
+
+</body>
+</html>
