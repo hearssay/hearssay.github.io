@@ -8,7 +8,7 @@
       labels: ['QTR', 'AAL', 'CMA'],
       datasets: [{
         label: 'Hours by airline',
-        data: [2710.88, 1674.62, 1083.42],
+        data: [2710.88, 1721.65, 1134.27],
         backgroundColor: '#79beff',
         borderColor: '#79beff',
         borderWidth: 1
@@ -36,10 +36,10 @@
   new Chart(topTenAirportsCtx, {
     type: 'bar',
     data: {
-      labels: ['OTHH', 'KMIA', 'SBGR', 'SKBO', 'LFPO'],
+      labels: ['KMIA', 'OTHH', 'SBGR', 'SKBO', 'LFPO'],
       datasets: [{
         label: 'Top 10 Visited Airports',
-        data: [198, 196, 190, 180, 68],
+        data: [202, 199, 190, 181, 72],
         backgroundColor: '#79beff',
         borderColor: '#79beff',
         borderWidth: 1
@@ -70,7 +70,7 @@ new Chart(hoursCtx, {
     labels: ['B77W', 'B77L', 'B738'],
     datasets: [{
       label: 'Hours by aircraft',
-      data: [3577.33, 1074.00, 817.58],
+      data: [3563.33, 1138.63, 864.62],
       backgroundColor: '#79beff',
       borderColor: '#79beff',
       borderWidth: 1
