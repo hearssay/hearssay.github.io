@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, notranslate">
+    <meta name="author" content="hearsay">
+    <meta name="description" content="flight sim and aviation logbook.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Scott | Logbook</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://kit.fontawesome.com/ce616330f2.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="scripts.js" defer></script>
+    <script src="vatsim.js" defer></script>
+
+</head>
+
+<style>
+/* Scoped styles only inside .tospp */
+.tospp {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #fff;
+    color: #333;
+    max-width: 850px;
+    margin: 60px auto; /* more breathing room from header */
+    padding: 40px 50px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+/* Headings */
+.tospp h1 {
+    text-align: center; /* centered looks more formal for policies */
+    color: #2c3e50;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+}
+
+.tospp h2 {
+    color: #34495e;
+    margin-top: 30px;
+    border-bottom: 2px solid #e1e1e1;
+    padding-bottom: 8px;
+    font-size: 1.3em;
+}
+
+/* Paragraphs */
+.tospp p {
+    margin: 12px 0;
+    font-size: 1em;
+}
+
+/* Lists */
+/* Lists */
+.tospp ul {
+    list-style-type: disc !important;  /* force bullets */
+    margin: 10px 0 10px 25px !important;
+    padding: 0 !important;
+}
+
+.tospp ul li {
+    display: list-item !important; 
+    margin: 6px 0 !important;
+    color: #333; /* ensure text color */
+}
+
+/* Force bullets color */
+.tospp ul li::marker {
+    color: #333; /* bullets visible */
+}
+
+
+/* Effective date */
+.tospp .effective-date {
+    font-style: italic;
+    margin-top: 20px;
+    display: block;
+    font-size: 0.72em;
+    color: #555;
+}
+
+/* Override strong inside .tospp to be italic, not bold */
+.tospp strong {
+    color: #000;        /* black text */
+    font-weight: normal; /* remove bold */
+    font-style: italic;  /* italic instead */
+    font-size: 0.95em;   /* slightly smaller */
+    text-align: right;
+    display: block;
+    margin-top: 20px;
+}
+
+
+
+/* Optional: body background outside container */
+body {
+    background-color: #f4f6f8; /* subtle off-white */
+    margin: 0;
+    padding: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .tospp {
+        padding: 30px 20px;
+        margin: 40px 15px;
+    }
+}
+</style>
+
+<body>
+
+<header class="site-header-bar">
+  <div class="header-inner">
+    <div class="site-header">
+      <a href="index.html">Scott | Logbook</a>
+    </div>
+    <div class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></div>
+    <nav class="header-nav" id="header-nav">
+      <a href="data.html">Data</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<div class="tospp">
+    <h1>Terms of Service</h1>
+
+    <h2>1. Acceptance of Terms</h2>
+    <p>By using this Discord presence application ("the App"), you agree to these Terms of Service. If you do not agree, discontinue use immediately.</p>
+
+    <h2>2. Service Description</h2>
+    <p>The App retrieves publicly available data from the VATSIM API to display flight information on your Discord profile. The service is provided as-is without warranties.</p>
+
+    <h2>3. User Responsibilities</h2>
+    <ul>
+        <li>You must comply with VATSIM's Terms of Service and Discord's Terms of Service.</li>
+        <li>You are responsible for the accuracy of any VATSIM credentials or identifiers you provide.</li>
+        <li>You must not attempt to access, modify, or disrupt the App's functionality.</li>
+    </ul>
+
+    <h2>4. Limitations</h2>
+    <ul>
+        <li>The App depends on third-party APIs (VATSIM, Discord) and may experience downtime or data delays.</li>
+        <li>We do not guarantee continuous, uninterrupted service.</li>
+        <li>We reserve the right to modify or discontinue the App at any time.</li>
+    </ul>
+
+    <h2>5. Liability</h2>
+    <p>The App is provided without warranty. We are not liable for any damages arising from use or inability to use the App, including data inaccuracies or service interruptions.</p>
+
+    <h2>6. Termination</h2>
+    <p>We may terminate or suspend access to the App at our discretion, without notice, for violations of these terms or other reasons.</p>
+
+    <h2>7. Changes to Terms</h2>
+    <p>We may update these terms at any time. Continued use after changes constitutes acceptance.</p>
+
+    <div class="effective-date"><strong>Effective date: 07 February 2026</strong></div>
+</div>
+
+<!-- Section 7: Footer -->
+
+<footer class="site-footer-bar">
+  <div class="footer-inner">
+    <div>
+      <a href="https://vatsim-radar.com/?pilot=1480399" target="_blank">
+        © 2020 – 2026
+      </a>
+    </div>
+
+    <div class="footer-icons">
+      <a href="https://vatsim-radar.com/?pilot=1480399" target="_blank"><i class="fa-solid fa-plane-up"></i></a>
+      <a href="https://twitch.tv/hearssay" target="_blank"><i class="fa-brands fa-twitch"></i></a>
+      <a href="https://www.tiktok.com/@hearsssay" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://www.instagram.com/hearssay/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://x.com/hearsssay" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+    </div>
+
+    <div>
+      <span id="ct"></span>
+    </div>
+  </div>
+</footer>
+  
+</div>
+<div id="vatsim-tooltip" class="vatsim-tooltip"></div>
+</body>
+</html>

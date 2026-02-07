@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, notranslate">
+    <meta name="author" content="hearsay">
+    <meta name="description" content="flight sim and aviation logbook.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Scott | Logbook</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://kit.fontawesome.com/ce616330f2.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="scripts.js" defer></script>
+    <script src="vatsim.js" defer></script>
+
+</head>
+
+<style>
+/* Scoped styles only inside .tospp */
+.tospp {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #fff;
+    color: #333;
+    max-width: 850px;
+    margin: 60px auto; /* more breathing room from header */
+    padding: 40px 50px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+/* Headings */
+.tospp h1 {
+    text-align: center; /* centered looks more formal for policies */
+    color: #2c3e50;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+}
+
+.tospp h2 {
+    color: #34495e;
+    margin-top: 30px;
+    border-bottom: 2px solid #e1e1e1;
+    padding-bottom: 8px;
+    font-size: 1.3em;
+}
+
+/* Paragraphs */
+.tospp p {
+    margin: 12px 0;
+    font-size: 1em;
+}
+
+/* Lists */
+/* Lists */
+.tospp ul {
+    list-style-type: disc !important;  /* force bullets */
+    margin: 10px 0 10px 25px !important;
+    padding: 0 !important;
+}
+
+.tospp ul li {
+    display: list-item !important; 
+    margin: 6px 0 !important;
+    color: #333; /* ensure text color */
+}
+
+/* Force bullets color */
+.tospp ul li::marker {
+    color: #333; /* bullets visible */
+}
+
+
+/* Effective date */
+.tospp .effective-date {
+    font-style: italic;
+    margin-top: 20px;
+    display: block;
+    font-size: 0.72em;
+    color: #555;
+}
+
+/* Override strong inside .tospp to be italic, not bold */
+.tospp strong {
+    color: #000;        /* black text */
+    font-weight: normal; /* remove bold */
+    font-style: italic;  /* italic instead */
+    font-size: 0.95em;   /* slightly smaller */
+    text-align: right;
+    display: block;
+    margin-top: 20px;
+}
+
+
+
+/* Optional: body background outside container */
+body {
+    background-color: #f4f6f8; /* subtle off-white */
+    margin: 0;
+    padding: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .tospp {
+        padding: 30px 20px;
+        margin: 40px 15px;
+    }
+}
+</style>
+
+<body>
+
+<header class="site-header-bar">
+  <div class="header-inner">
+    <div class="site-header">
+      <a href="index.html">Scott | Logbook</a>
+    </div>
+    <div class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></div>
+    <nav class="header-nav" id="header-nav">
+      <a href="data.html">Data</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<div class="tospp">
+    <h1>Privacy Policy</h1>
+
+    <h2>1. Data Collection</h2>
+    <p>The App collects:</p>
+    <ul>
+        <li>Your Discord User ID (to link your profile)</li>
+        <li>VATSIM pilot data you authorize us to access (callsign, position, aircraft, flight plan)</li>
+        <li>Technical data (timestamps, API request logs)</li>
+    </ul>
+
+    <h2>2. Data Sources</h2>
+    <p>All flight data is retrieved from the publicly accessible VATSIM API. We do not collect data beyond what VATSIM makes publicly available.</p>
+
+    <h2>3. Data Use</h2>
+    <p>Data is used solely to:</p>
+    <ul>
+        <li>Display your current VATSIM flight status on Discord</li>
+        <li>Maintain App functionality and troubleshoot issues</li>
+    </ul>
+
+    <h2>4. Data Sharing</h2>
+    <ul>
+        <li>We do not sell or share your data with third parties</li>
+        <li>Data may be visible to others via Discord's presence system (this is the App's intended function)</li>
+        <li>We may disclose data if required by law</li>
+    </ul>
+
+    <h2>5. Data Storage</h2>
+    <ul>
+        <li>Temporary caching may occur for performance purposes</li>
+        <li>No long-term storage of personal data beyond operational needs</li>
+        <li>You may request data deletion by discontinuing App use</li>
+    </ul>
+
+    <h2>6. Third-Party Services</h2>
+    <p>The App integrates with VATSIM and Discord. Their respective privacy policies apply to data they control.</p>
+
+    <h2>7. Security</h2>
+    <p>We implement reasonable security measures but cannot guarantee absolute security of data transmission.</p>
+
+    <h2>8. Contact</h2>
+    <p>For questions or data requests, contact:</p>
+        <form class="tospp-contact" action="https://formspree.io/f/maqdybpk" method="POST">
+      <label for="name">Name:</label><br>
+      <input type="text" id="name" name="name" required style="width:100%; padding:8px; margin:5px 0;"><br>
+
+      <label for="email">Email:</label><br>
+      <input type="email" id="email" name="_replyto" required style="width:100%; padding:8px; margin:5px 0;"><br>
+
+      <label for="message">Message:</label><br>
+      <textarea id="message" name="message" rows="5" required style="width:100%; padding:8px; margin:5px 0;"></textarea><br>
+
+      <button type="submit" style="padding:10px 20px; margin-top:10px;">Send</button>
+    </form>
+    <h2>9. Changes to Policy</h2>
+    <p>We may update this policy at any time. Material changes will be communicated through the App or our website.</p>
+    <div class="effective-date"><strong>Effective date: 07 February 2026</strong></div>
+</div>
+
+<!-- Section 7: Footer -->
+
+<footer class="site-footer-bar">
+  <div class="footer-inner">
+    <div>
+      <a href="https://vatsim-radar.com/?pilot=1480399" target="_blank">
+        © 2020 – 2026
+      </a>
+    </div>
+
+    <div class="footer-icons">
+      <a href="https://vatsim-radar.com/?pilot=1480399" target="_blank"><i class="fa-solid fa-plane-up"></i></a>
+      <a href="https://twitch.tv/hearssay" target="_blank"><i class="fa-brands fa-twitch"></i></a>
+      <a href="https://www.tiktok.com/@hearsssay" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://www.instagram.com/hearssay/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://x.com/hearsssay" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+    </div>
+
+    <div>
+      <span id="ct"></span>
+    </div>
+  </div>
+</footer>
+  
+</div>
+<div id="vatsim-tooltip" class="vatsim-tooltip"></div>
+</body>
+</html>
