@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="tab/tab.png">
+  <title>...</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Garamond, serif;
+      font-size: 27px;
+      line-height: 1.25;
+      color: #ffffff;
+      background-color: rgb(9, 28, 41);
+    }
+
+    h1 {
+      font-size: 2.73em;
+      margin-bottom: 0;
+      font-family: Garamond, serif;
+      font-weight: normal;
+    }
+
+    #clock-container {
+      position: fixed;
+      bottom: 24px;
+      right: 32px;
+      text-align: right;
+    }
+
+    #time {
+      font-size: 2.73em;
+      font-weight: normal;
+      color: #ffffff;
+      letter-spacing: 0.05em;
+    }
+
+    #date {
+      font-size: 1em;
+      color: #ffffff;
+      margin-top: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="clock-container">
+    <div id="time"></div>
+    <div id="date"></div>
+  </div>
+
+  <script>
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+    function update() {
+      const now = new Date();
+      const h = String(now.getUTCHours()).padStart(2, '0');
+      const m = String(now.getUTCMinutes()).padStart(2, '0');
+      const s = String(now.getUTCSeconds()).padStart(2, '0');
+      document.getElementById('time').textContent = `${h}:${m}:${s}`;
+
+      const d = String(now.getUTCDate()).padStart(2, '0');
+      const mon = months[now.getUTCMonth()];
+      const y = String(now.getUTCFullYear()).slice(2);
+      document.getElementById('date').textContent = `${d} ${mon} ${y}`;
+    }
+
+    update();
+    setInterval(update, 1000);
+  </script>
+
+</body>
+</html>
