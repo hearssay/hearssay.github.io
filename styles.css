@@ -546,3 +546,13 @@ header .hamburger {
   transform: translateX(-50%) translateY(-8px); /* center horizontally & slightly above */
   box-shadow: 0 2px 6px rgba(0,0,0,0.2); /* subtle shadow for contrast */
 }
+
+.about-scott ul,
+.about-scott li {
+  color: #000;
+}
+
+.about-note {
+  font-style: italic;
+  color: #555;
+}
