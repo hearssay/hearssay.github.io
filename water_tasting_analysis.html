@@ -1,0 +1,264 @@
+<h2 class="sr-only">Water tasting test — statistical analysis for Paola, Luciana, and Scott across 5 brands on a 0–5 scale</h2>
+
+<div style="padding: 1rem 0; font-family: var(--font-sans);">
+
+<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 2rem;">
+  <div style="background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 1rem;">
+    <p style="font-size: 11px; color: var(--color-text-secondary); margin: 0 0 6px; text-transform: uppercase; letter-spacing: 0.06em;">top brand</p>
+    <p style="font-size: 20px; font-weight: 500; margin: 0; color: var(--color-text-primary);">Manantial</p>
+    <p style="font-size: 12px; color: var(--color-text-tertiary); margin: 4px 0 0;">avg 4.00 / 5</p>
+  </div>
+  <div style="background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 1rem;">
+    <p style="font-size: 11px; color: var(--color-text-secondary); margin: 0 0 6px; text-transform: uppercase; letter-spacing: 0.06em;">worst brand</p>
+    <p style="font-size: 20px; font-weight: 500; margin: 0; color: var(--color-text-primary);">Tap</p>
+    <p style="font-size: 12px; color: var(--color-text-tertiary); margin: 4px 0 0;">avg 0.33 / 5</p>
+  </div>
+  <div style="background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 1rem;">
+    <p style="font-size: 11px; color: var(--color-text-secondary); margin: 0 0 6px; text-transform: uppercase; letter-spacing: 0.06em;">most agreed on</p>
+    <p style="font-size: 20px; font-weight: 500; margin: 0; color: var(--color-text-primary);">Blue</p>
+    <p style="font-size: 12px; color: var(--color-text-tertiary); margin: 4px 0 0;">std dev 0.47</p>
+  </div>
+  <div style="background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 1rem;">
+    <p style="font-size: 11px; color: var(--color-text-secondary); margin: 0 0 6px; text-transform: uppercase; letter-spacing: 0.06em;">most divisive</p>
+    <p style="font-size: 20px; font-weight: 500; margin: 0; color: var(--color-text-primary);">Cristal</p>
+    <p style="font-size: 12px; color: var(--color-text-tertiary); margin: 4px 0 0;">std dev 1.70</p>
+  </div>
+</div>
+
+<div style="display: flex; gap: 20px; margin-bottom: 10px; align-items: center;">
+  <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-tertiary);">tasters</span>
+  <span style="display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--color-text-secondary);"><span style="width: 10px; height: 10px; border-radius: 2px; background: #7F77DD; display: inline-block;"></span>Paola</span>
+  <span style="display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--color-text-secondary);"><span style="width: 10px; height: 10px; border-radius: 2px; background: #D85A30; display: inline-block;"></span>Luciana</span>
+  <span style="display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--color-text-secondary);"><span style="width: 10px; height: 10px; border-radius: 2px; background: #185FA5; display: inline-block;"></span>Scott</span>
+</div>
+
+<p style="font-size: 11px; color: var(--color-text-secondary); margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.06em;">scores by brand &amp; taster</p>
+<div style="position: relative; width: 100%; height: 260px; margin-bottom: 2rem;">
+  <canvas id="gbChart" role="img" aria-label="Grouped bar chart of scores by brand per taster">Blue: Paola 4, Luciana 3, Scott 4. Manantial: Paola 5, Luciana 4, Scott 3. Brisa: Paola 3, Luciana 1, Scott 4. Cristal: Paola 1, Luciana 5, Scott 4. Tap: Paola 1, Luciana 0, Scott 0.</canvas>
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 2rem;">
+  <div>
+    <p style="font-size: 11px; color: var(--color-text-secondary); margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.06em;">taste profiles — radar</p>
+    <div style="position: relative; width: 100%; height: 280px;">
+      <canvas id="rdChart" role="img" aria-label="Radar chart comparing each taster's scores across all brands">Radar comparison of all three tasters across Blue, Manantial, Brisa, Cristal, Tap.</canvas>
+    </div>
+  </div>
+  <div>
+    <p style="font-size: 11px; color: var(--color-text-secondary); margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.06em;">brand ranking — mean ± sd (hover for detail)</p>
+    <div style="position: relative; width: 100%; height: 280px;">
+      <canvas id="abChart" role="img" aria-label="Horizontal bar chart of brand average scores ranked highest to lowest with error bars for standard deviation">Ranked: Manantial 4.00, Blue 3.67, Cristal 3.33, Brisa 2.67, Tap 0.33.</canvas>
+    </div>
+  </div>
+</div>
+
+<p style="font-size: 11px; color: var(--color-text-secondary); margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.06em;">score heatmap</p>
+<table id="hmTable" style="width: 100%; border-collapse: separate; border-spacing: 4px; margin-bottom: 2rem;"></table>
+
+<p style="font-size: 11px; color: var(--color-text-secondary); margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.06em;">statistical summary — ranked by mean</p>
+<table style="width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 1.5rem;">
+  <thead>
+    <tr style="border-bottom: 0.5px solid var(--color-border-secondary);">
+      <th style="text-align: left; padding: 7px 0; font-weight: 500; color: var(--color-text-secondary); font-size: 12px;">#</th>
+      <th style="text-align: left; padding: 7px 0; font-weight: 500; color: var(--color-text-secondary); font-size: 12px;">brand</th>
+      <th style="text-align: right; padding: 7px 0; font-weight: 500; color: var(--color-text-secondary); font-size: 12px;">mean</th>
+      <th style="text-align: right; padding: 7px 0; font-weight: 500; color: var(--color-text-secondary); font-size: 12px;">median</th>
+      <th style="text-align: right; padding: 7px 0; font-weight: 500; color: var(--color-text-secondary); font-size: 12px;">std dev</th>
+      <th style="text-align: right; padding: 7px 0; font-weight: 500; color: var(--color-text-secondary); font-size: 12px;">min</th>
+      <th style="text-align: right; padding: 7px 0; font-weight: 500; color: var(--color-text-secondary); font-size: 12px;">max</th>
+      <th style="text-align: right; padding: 7px 0; font-weight: 500; color: var(--color-text-secondary); font-size: 12px;">range</th>
+    </tr>
+  </thead>
+  <tbody id="stBody"></tbody>
+</table>
+
+<p style="font-size: 11px; color: var(--color-text-secondary); margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.06em;">per-taster summary</p>
+<table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+  <thead>
+    <tr style="border-bottom: 0.5px solid var(--color-border-secondary);">
+      <th style="text-align: left; padding: 7px 0; font-weight: 500; color: var(--color-text-secondary); font-size: 12px;">taster</th>
+      <th style="text-align: right; padding: 7px 0; font-weight: 500; color: var(--color-text-secondary); font-size: 12px;">mean</th>
+      <th style="text-align: right; padding: 7px 0; font-weight: 500; color: var(--color-text-secondary); font-size: 12px;">std dev</th>
+      <th style="text-align: right; padding: 7px 0; font-weight: 500; color: var(--color-text-secondary); font-size: 12px;">min</th>
+      <th style="text-align: right; padding: 7px 0; font-weight: 500; color: var(--color-text-secondary); font-size: 12px;">max</th>
+      <th style="text-align: right; padding: 7px 0; font-weight: 500; color: var(--color-text-secondary); font-size: 12px;">top pick</th>
+    </tr>
+  </thead>
+  <tbody id="tBody"></tbody>
+</table>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const scores = {
+  paola:   [4, 5, 3, 1, 1],
+  luciana: [3, 4, 1, 5, 0],
+  scott:   [4, 3, 4, 4, 0]
+};
+const bKeys   = ['blue','manantial','brisa','cristal','tap'];
+const bLabels = ['Blue','Manantial','Brisa','Cristal','Tap'];
+const tKeys   = ['paola','luciana','scott'];
+const bColors = {blue:'#378ADD', manantial:'#1D9E75', brisa:'#EF9F27', cristal:'#D4537E', tap:'#888780'};
+const tColors = {paola:'#77aaff', luciana:'#bbeeff', scott:'#5588ff'};
+
+const avg = a => a.reduce((s,v)=>s+v,0)/a.length;
+const sdv = a => { const m=avg(a); return Math.sqrt(a.reduce((s,v)=>s+(v-m)**2,0)/a.length); };
+const mdn = a => { const s=[...a].sort((x,y)=>x-y), m=Math.floor(s.length/2); return s.length%2?s[m]:(s[m-1]+s[m])/2; };
+
+const bStats = bKeys.map((b,i) => {
+  const vals = tKeys.map(t=>scores[t][i]);
+  return { key:b, label:bLabels[i], vals, mean:avg(vals), median:mdn(vals), std:sdv(vals), min:Math.min(...vals), max:Math.max(...vals) };
+});
+const ranked = [...bStats].sort((a,b)=>b.mean-a.mean);
+
+const stBody = document.getElementById('stBody');
+ranked.forEach((s,i) => {
+  const tr = document.createElement('tr');
+  tr.style.borderBottom = '0.5px solid var(--color-border-tertiary)';
+  tr.innerHTML = `<td style="padding:7px 0;color:var(--color-text-tertiary);font-size:12px;">${i+1}</td><td style="padding:7px 0;font-weight:500;color:var(--color-text-primary);">${s.label}</td><td style="text-align:right;padding:7px 0;color:var(--color-text-primary);">${s.mean.toFixed(2)}</td><td style="text-align:right;padding:7px 0;color:var(--color-text-primary);">${s.median.toFixed(1)}</td><td style="text-align:right;padding:7px 0;color:var(--color-text-primary);">${s.std.toFixed(2)}</td><td style="text-align:right;padding:7px 0;color:var(--color-text-primary);">${s.min}</td><td style="text-align:right;padding:7px 0;color:var(--color-text-primary);">${s.max}</td><td style="text-align:right;padding:7px 0;color:var(--color-text-primary);">${s.max-s.min}</td>`;
+  stBody.appendChild(tr);
+});
+
+const tBody = document.getElementById('tBody');
+tKeys.forEach(t => {
+  const vals = scores[t];
+  const topIdx = vals.indexOf(Math.max(...vals));
+  const tr = document.createElement('tr');
+  tr.style.borderBottom = '0.5px solid var(--color-border-tertiary)';
+  tr.innerHTML = `<td style="padding:7px 0;font-weight:500;color:var(--color-text-primary);">${t.charAt(0).toUpperCase()+t.slice(1)}</td><td style="text-align:right;padding:7px 0;color:var(--color-text-primary);">${avg(vals).toFixed(2)}</td><td style="text-align:right;padding:7px 0;color:var(--color-text-primary);">${sdv(vals).toFixed(2)}</td><td style="text-align:right;padding:7px 0;color:var(--color-text-primary);">${Math.min(...vals)}</td><td style="text-align:right;padding:7px 0;color:var(--color-text-primary);">${Math.max(...vals)}</td><td style="text-align:right;padding:7px 0;color:var(--color-text-primary);">${bLabels[topIdx]}</td>`;
+  tBody.appendChild(tr);
+});
+
+const palette = [['#FCEBEB','#A32D2D'],['#F7C1C1','#791F1F'],['#FAEEDA','#854F0B'],['#F1EFE8','#444441'],['#C0DD97','#27500A'],['#639922','#EAF3DE']];
+const hm = document.getElementById('hmTable');
+let hdr = '<tr><td></td>';
+bLabels.forEach(l => { hdr += `<th style="text-align:center;font-size:12px;font-weight:500;padding:4px 6px;color:var(--color-text-secondary);">${l}</th>`; });
+hdr += '<th style="text-align:center;font-size:12px;font-weight:400;padding:4px 6px;color:var(--color-text-tertiary);">avg</th></tr>';
+hm.innerHTML = hdr;
+
+tKeys.forEach(t => {
+  const row = document.createElement('tr');
+  let html = `<td style="padding:6px 8px;font-size:13px;font-weight:500;color:var(--color-text-secondary);">${t.charAt(0).toUpperCase()+t.slice(1)}</td>`;
+  scores[t].forEach(v => {
+    const [bg,col] = palette[v];
+    html += `<td style="text-align:center;padding:10px 4px;border-radius:5px;background:${bg};color:${col};font-weight:500;font-size:15px;">${v}</td>`;
+  });
+  html += `<td style="text-align:center;padding:10px 4px;font-size:13px;font-weight:500;color:var(--color-text-tertiary);">${avg(scores[t]).toFixed(1)}</td>`;
+  row.innerHTML = html;
+  hm.appendChild(row);
+});
+
+const fRow = document.createElement('tr');
+let fHtml = `<td style="padding:4px 8px;font-size:11px;color:var(--color-text-tertiary);">avg</td>`;
+bStats.forEach(s => { fHtml += `<td style="text-align:center;padding:4px;font-size:11px;color:var(--color-text-tertiary);">${s.mean.toFixed(2)}</td>`; });
+fHtml += '<td></td>';
+fRow.innerHTML = fHtml;
+hm.appendChild(fRow);
+
+const errPlugin = {
+  id: 'errBars',
+  afterDatasetsDraw(chart) {
+    const { ctx, scales } = chart;
+    const meta = chart.getDatasetMeta(0);
+    ctx.save();
+    ctx.strokeStyle = '#5F5E5A';
+    ctx.lineWidth = 1.5;
+    ranked.forEach((s,i) => {
+      const bar = meta.data[i];
+      if (!bar) return;
+      const y = bar.y;
+      const xL = scales.x.getPixelForValue(Math.max(0, s.mean-s.std));
+      const xR = scales.x.getPixelForValue(Math.min(5, s.mean+s.std));
+      const cap = 7;
+      ctx.beginPath();
+      ctx.moveTo(xL, y-cap/2); ctx.lineTo(xL, y+cap/2);
+      ctx.moveTo(xL, y); ctx.lineTo(xR, y);
+      ctx.moveTo(xR, y-cap/2); ctx.lineTo(xR, y+cap/2);
+      ctx.stroke();
+    });
+    ctx.restore();
+  }
+};
+
+new Chart(document.getElementById('gbChart'), {
+  type: 'bar',
+  data: {
+    labels: bLabels,
+    datasets: tKeys.map(t => ({
+      label: t.charAt(0).toUpperCase()+t.slice(1),
+      data: scores[t],
+      backgroundColor: tColors[t],
+      borderRadius: 3
+    }))
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { min:0, max:5, ticks:{ stepSize:1, color:'#888780' }, grid:{ color:'rgba(136,135,128,0.15)' }, border:{ display:false } },
+      x: { ticks:{ color:'#888780', autoSkip:false }, grid:{ display:false }, border:{ display:false } }
+    }
+  }
+});
+
+new Chart(document.getElementById('rdChart'), {
+  type: 'radar',
+  data: {
+    labels: bLabels,
+    datasets: tKeys.map(t => ({
+      label: t.charAt(0).toUpperCase()+t.slice(1),
+      data: scores[t],
+      borderColor: tColors[t],
+      backgroundColor: tColors[t] + '22',
+      pointBackgroundColor: tColors[t],
+      borderWidth: 2,
+      pointRadius: 4
+    }))
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      r: {
+        min:0, max:5,
+        ticks:{ stepSize:1, color:'#888780', font:{ size:10 }, backdropColor:'transparent' },
+        grid:{ color:'rgba(136,135,128,0.2)' },
+        pointLabels:{ color:'#5F5E5A', font:{ size:11 } }
+      }
+    }
+  }
+});
+
+new Chart(document.getElementById('abChart'), {
+  type: 'bar',
+  plugins: [errPlugin],
+  data: {
+    labels: ranked.map(s=>s.label),
+    datasets: [{
+      data: ranked.map(s=>parseFloat(s.mean.toFixed(3))),
+      backgroundColor: ranked.map(s=>bColors[s.key]),
+      borderRadius: 3
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => {
+            const s = ranked[ctx.dataIndex];
+            return [`mean: ${s.mean.toFixed(2)}`, `± sd: ${s.std.toFixed(2)}`, `range: ${s.min}–${s.max}`];
+          }
+        }
+      }
+    },
+    scales: {
+      x: { min:0, max:5, ticks:{ stepSize:1, color:'#888780' }, grid:{ color:'rgba(136,135,128,0.15)' }, border:{ display:false } },
+      y: { ticks:{ color:'#888780', autoSkip:false }, grid:{ display:false }, border:{ display:false } }
+    }
+  }
+});
+</script>
