@@ -5,10 +5,10 @@
   new Chart(hoursByAirlineCtx, {
     type: 'bar',
     data: {
-      labels: ['QTR', 'AAL', 'CMA'],
+      labels: ['QTR', 'AAL', 'CMA','TVF'],
       datasets: [{
         label: 'Hours by airline',
-        data: [2662.40, 1723.78, 1964.27],
+        data: [2157.63, 206.43, 4026.27, 33.48],
         backgroundColor: '#79beff',
         borderColor: '#79beff',
         borderWidth: 1
@@ -39,7 +39,7 @@
       labels: ['KMIA', 'OTHH', 'SBGR', 'SKBO', 'LFPG/O'],
       datasets: [{
         label: 'Top 10 Visited Airports',
-        data: [220, 204, 202, 202, 141],
+        data: [220, 204, 202, 204, 148],
         backgroundColor: '#79beff',
         borderColor: '#79beff',
         borderWidth: 1
@@ -70,7 +70,7 @@ new Chart(hoursCtx, {
     labels: ['B77W', 'B77L', 'B738'],
     datasets: [{
       label: 'Hours by aircraft',
-      data: [3584.55, 1890.38, 875.52],
+      data: [2255.02, 3962.52, 206.28],
       backgroundColor: '#79beff',
       borderColor: '#79beff',
       borderWidth: 1
@@ -100,7 +100,7 @@ new Chart(hoursCtx, {
   const data2023 = [0.85, 0, 429.83, 715.08];
   const data2024 = [264.98, 211.25, 649.37, 552.65];
   const data2025 = [780.55,138.60,54.98,319.05]; 
-  const data2026 = [729.80,127.15,0.00,0.00];
+  const data2026 = [729.80,198.72,0.00,0.00];
 
   // Monthly Line Chart
   const monthlyCtx = document.getElementById('monthlyChart').getContext('2d');
