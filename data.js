@@ -5,7 +5,7 @@
   new Chart(hoursByAirlineCtx, {
     type: 'bar',
     data: {
-      labels: ['QTR', 'AAL', 'CMA','TVF'],
+      labels: ['QTR', 'AAL', 'CMA','FPO'],
       datasets: [{
         label: 'Hours by airline',
         data: [2157.63, 206.43, 4026.27, 33.48],
