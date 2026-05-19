@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Miami — Sara & Isabella</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  #content { display: none; }
+  #gate { display: flex; align-items: center; justify-content: center; height: 100vh; font-family: sans-serif; font-size: 14px; color: #888; }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 1.25rem 0; font-size: 13px; }
+  .legend { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .tag { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 99px; white-space: nowrap; }
+  .tag-bike { background: #97FF7E; color: #0C447C; }
+  .tag-uber { background: #FFFE8D; color: #0C447C; }
+  .tag-walk { background: #FF9176; color: #fff; }
+  .tag-food { background: #2AFFE8; color: #633806; }
+  .tag-drink { background: #6DB1FF; color: #fff; }
+  .tag-opt  { background: #F1EFE8; color: #444441; }
+  .tag-roof { background: #FF85AD; color: #fff; }
+  .day-block { margin-bottom: 1.25rem; border: 0.5px solid var(--color-border-tertiary); border-radius: 12px; overflow: hidden; background: var(--color-background-primary); }
+  .day-header { padding: 8px 14px; background: var(--color-background-secondary); border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.07em; color: var(--color-text-secondary); }
+  .row { display: grid; grid-template-columns: 52px 22px 1fr; gap: 0 8px; border-bottom: 0.5px solid var(--color-border-tertiary); padding: 9px 14px; align-items: start; transition: background 0.15s; }
+  .row:last-child { border-bottom: none; }
+  .row.opt { background: var(--color-background-secondary); }
+  .row.done .place { text-decoration: line-through; color: var(--color-text-secondary); }
+  .row.done .note-static { color: var(--color-text-tertiary); }
+  .check-col { display: flex; align-items: flex-start; padding-top: 1px; }
+  .check-col input[type=checkbox] { width: 15px; height: 15px; cursor: pointer; accent-color: #1D9E75; flex-shrink: 0; margin-top: 1px; }
+  .time { font-size: 12px; color: var(--color-text-secondary); font-variant-numeric: tabular-nums; padding-top: 1px; }
+  .main { display: flex; flex-direction: column; gap: 4px; }
+  .place-line { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; line-height: 1.4; }
+  .place { font-weight: 500; color: var(--color-text-primary); transition: color 0.15s; }
+  .place.muted { color: var(--color-text-secondary); }
+  .note-static { font-size: 12px; color: var(--color-text-secondary); line-height: 1.4; }
+  .or-row { text-align: center; padding: 5px 14px; font-size: 11px; color: var(--color-text-secondary); background: var(--color-background-secondary); border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .save-indicator { font-size: 11px; color: var(--color-text-tertiary); text-align: right; padding: 4px 0 0; min-height: 16px; transition: opacity 0.3s; }
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <form id="pwd-form" style="display:flex; flex-direction:column; align-items:center; gap:12px;">
+    <div style="font-weight:500; color:#333;">Enter password</div>
+    <input id="pwd-input" type="password" autofocus
+      style="padding:8px 12px; font-size:14px; border:1px solid #ccc; border-radius:6px; outline:none; width:200px;">
+    <div id="pwd-error" style="color:#c0392b; font-size:12px; min-height:16px;"></div>
+    <button type="submit"
+      style="padding:7px 20px; font-size:13px; background:#1D9E75; color:#fff; border:none; border-radius:6px; cursor:pointer;">
+      Unlock
+    </button>
+  </form>
+</div>
+
+<div id="content">
+  <div class="wrap">
+    <h2 class="sr-only">Miami &mdash; Sara & Isabella</h2>   <br> <br>
+    <div id="itinerary"></div>
+    <div class="save-indicator" id="save-status"></div>
+  </div>
+
+  <div style="max-width:640px; margin: 2rem auto 0;">
+    <textarea id="trip-notes" rows="5" style="width:100%; font-size:13px; font-family:inherit; padding: 10px; border: 0.5px solid #ccc; border-radius:8px;" placeholder="Trip notes..."></textarea>
+  </div>
+
+  <div style="text-align:left; padding: 1rem 0 0;">
+    <button onclick="localStorage.removeItem('miami-itinerary-state'); localStorage.removeItem('miami-trip-notes'); location.reload()">reset</button>
+  </div>
+</div>
+
+<script>
+const PASSWORD = "SaraIsa";
+
+document.getElementById('pwd-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const val = document.getElementById('pwd-input').value;
+  if (val === PASSWORD) {
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('content').style.display = 'block';
+    initApp();
+  } else {
+    document.getElementById('pwd-error').textContent = 'Incorrect password.';
+    document.getElementById('pwd-input').value = '';
+    document.getElementById('pwd-input').focus();
+  }
+});
+
+const DAYS = [
+  { label: "Day 1 — Arrival (22:15) | 06JUN26", rows: [
+    { id:"d1r1", time:"23:30", place:"Check in — The Palms Hotel & Spa", tags:["uber"], note:"3025 Collins Ave, Miami Beach, FL 33140" },
+    { id:"d1r2", time:"23:59", place:"Ocean Drive — walk + beer", tags:["drink"], note:"1h, first look at the strip" },
+  ]},
+  { label: "Day 2 — Miami Beach | 07JUN26", rows: [
+    { id:"d2r1", time:"08:00", place:"Rent bikes: Mr Bikes", tags:["bike"], note:"2720 Collins Ave Suite B, Miami Beach, FL 33140" },
+    { id:"d2r2", time:"08:30", place:"Boardwalk → South Pointe Park", tags:["bike"], note:"45 min ride south" },
+    { id:"d2r3", time:"09:30", place:"Ocean Drive", tags:["walk"], note:"Slow walk north, Art Deco — 30 min" },
+    { id:"d2r4", time:"10:00", place:"Española Way", tags:["walk"], note:"15 min stroll" },
+    { id:"d2r5", time:"11:00", place:"Lincoln Road", tags:["food"], note:"Coffee + browse + lunch — 2h. H&M, Zara here." },
+    { id:"d2r6", time:"13:00", place:"Wynwood Walls", tags:["uber"], note:"Drop bikes at hotel first. ~15 min Uber. Murals, galleries, street food — 2h" },
+    { id:"d2r7", time:"15:30", place:"Design District", tags:["walk"], note:"10 min walk from Wynwood — 1h browse" },
+    { id:"d2r8", time:"17:00", place:"Back to hotel — freshen up", tags:["uber"], note:"" },
+    { id:"d2r9", time:"18:00", place:"Beach + cold beers", tags:["drink"], note:"1.5h" },
+    { id:"d2r10", time:"20:00", place:"WATR, La Côte at Fontainebleau", tags:["roof","walk"], note:"" },
+  ]},
+  { label: "Day 3 — Mainland | 08JUN26", rows: [
+    { id:"d3r2", time:"09:30", place:"Little Havana — Calle Ocho + Versailles", tags:["uber","food"], note:"Walk Calle Ocho, Domino Park — lunch at Versailles Restaurant (3555 SW 8th St). 2.5h" },
+    { id:"d3r3", time:"12:00", place:"Vizcaya Museum & Gardens", tags:["uber"], note:"15 min from Little Havana — 1.5h" },
+    { id:"d3r4", time:"13:30", place:"Coconut Grove", tags:["walk"], note:"Walk from Vizcaya — oldest neighborhood in Miami, waterfront, shaded streets. 45 min" },
+    { id:"d3r5", time:"14:30", place:"Brickell City Centre", tags:["uber"], note:"Walk the area, browse, coffee — 1.5h" },
+    { id:"d3r6", time:"16:00", place:"Back to Miami Beach", tags:["uber"], note:"" },
+    { id:"d3r7", time:"16:30", place:"Bikes — boardwalk golden hour", tags:["bike"], note:"1.5h" },
+    { id:"d3r8", time:"18:30", place:"Beach + beers", tags:["drink"], note:"Sunset" },
+  ]},
+  { label: "Day 4 — Morning (departs 11:30) | 09JUN26", rows: [
+    { id:"d4r1", time:"07:00", place:"Last beach walk + coffee", tags:["walk","food"], note:"" },
+    { id:"d4r2", time:"08:30", place:"Check out + pack", tags:[], note:"" },
+    { id:"d4r3", time:"09:15", place:"Uber to MIA", tags:["uber"], note:"Hard limit — leave no later than 09:30" },
+  ]},
+];
+
+const TAG_LABELS = { bike:"bike", uber:"uber", walk:"walk", food:"coffee / food", drink:"drinks", opt:"optional", roof:"rooftop" };
+
+let state = { checked: {}, notes: {} };
+let saveTimer = null;
+
+function tagHTML(t) {
+  return `<span class="tag tag-${t}">${TAG_LABELS[t]||t}</span>`;
+}
+
+function render() {
+  const container = document.getElementById('itinerary');
+  container.innerHTML = '';
+  DAYS.forEach(day => {
+    const block = document.createElement('div');
+    block.className = 'day-block';
+    block.innerHTML = `<div class="day-header">${day.label}</div>`;
+    day.rows.forEach(row => {
+      if (row.or) {
+        const or = document.createElement('div');
+        or.className = 'or-row';
+        or.textContent = '— or —';
+        block.appendChild(or);
+        return;
+      }
+      const checked = !!state.checked[row.id];
+      const div = document.createElement('div');
+      div.className = 'row' + (row.opt ? ' opt' : '') + (checked ? ' done' : '');
+      div.innerHTML = `
+        <div class="time">${row.time||''}</div>
+        <div class="check-col"><input type="checkbox" data-id="${row.id}" ${checked?'checked':''}></div>
+        <div class="main">
+          <div class="place-line">
+            <span class="place${row.opt?' muted':''}">${row.place}</span>
+            ${(row.tags||[]).map(tagHTML).join('')}
+          </div>
+          ${row.note ? `<div class="note-static">${row.note}</div>` : ''}
+        </div>`;
+      block.appendChild(div);
+    });
+    container.appendChild(block);
+  });
+
+  container.querySelectorAll('input[type=checkbox]').forEach(cb => {
+    cb.addEventListener('change', e => {
+      const id = e.target.dataset.id;
+      state.checked[id] = e.target.checked;
+      const row = e.target.closest('.row');
+      if (e.target.checked) row.classList.add('done');
+      else row.classList.remove('done');
+      scheduleSave();
+    });
+  });
+}
+
+function scheduleSave() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveState, 600);
+}
+
+async function saveState() {
+  try {
+    await window.storage.set('miami-itinerary-state', JSON.stringify(state));
+    showStatus('saved');
+  } catch(e) { showStatus('error saving'); }
+}
+
+function showStatus(msg) {
+  const el = document.getElementById('save-status');
+  el.textContent = msg === 'saved' ? '✓ saved' : msg;
+  el.style.opacity = '1';
+  setTimeout(() => { el.style.opacity = '0'; }, 1800);
+}
+
+async function initApp() {
+  try {
+    const result = await window.storage.get('miami-itinerary-state');
+    if (result && result.value) state = JSON.parse(result.value);
+  } catch(e) {}
+  render();
+
+  const notesEl = document.getElementById('trip-notes');
+  notesEl.value = localStorage.getItem('miami-trip-notes') || '';
+  notesEl.addEventListener('input', () => {
+    localStorage.setItem('miami-trip-notes', notesEl.value);
+  });
+}
+</script>
+</body>
+</html>
