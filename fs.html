@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, notranslate">
+    <meta name="author" content="hearsay">
+    <meta name="description" content="flight sim and aviation logbook.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Scott | Logbook</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://kit.fontawesome.com/ce616330f2.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="scripts.js" defer></script>
+    <script src="vatsim.js" defer></script>
+
+</head>
+<body>
+
+<header class="site-header-bar">
+  <div class="header-inner">
+    <div class="site-header">
+      <a href="index.html">Scott | Logbook</a>
+    </div>
+    <div class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></div>
+    <nav class="header-nav" id="header-nav">
+      <a href="data.html">Data</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+
+
+<div class="logbook-section">
+  <div class="card">
+    <div class="card-title">Network hours</div>
+    <div class="card-body">
+      <div><span class="label">VATSIM:</span> <span id="vatsim-hours">...</span></div>
+      <div><span class="label">IVAO:</span> 344.67</div>
+    </div>
+  </div>
+
+  <div class="map-wrapper">
+    <iframe src="map.html" width="100%" height="400"></iframe>
+  </div>
+</div>
+
+<!-- Section 7: Footer -->
+
+<footer class="site-footer-bar">
+  <div class="footer-inner">
+    <div>
+      <a href="https://vatsim-radar.com/?pilot=1480399" target="_blank">
+        © 2020 – 2026
+      </a>
+    </div>
+
+    <div class="footer-icons">
+      <a href="https://vatsim-radar.com/?pilot=1480399" target="_blank"><i class="fa-solid fa-plane-up"></i></a>
+      <a href="https://twitch.tv/hearssay" target="_blank"><i class="fa-brands fa-twitch"></i></a>
+      <a href="https://www.tiktok.com/@hearsssay" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://www.instagram.com/hearssay/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://x.com/hearsssay" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+    </div>
+
+    <div>
+      <span id="ct"></span>
+    </div>
+  </div>
+</footer>
+  
+</div>
+<div id="vatsim-tooltip" class="vatsim-tooltip"></div>
+</body>
+</html>

@@ -1,77 +1,222 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
-    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, notranslate">
-    <meta name="author" content="hearsay">
-    <meta name="description" content="flight sim and aviation logbook.">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Scott | Logbook</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-    <script src="https://kit.fontawesome.com/ce616330f2.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="scripts.js" defer></script>
-    <script src="vatsim.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zulu Time</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1917;
+      --sub: #7a7672;
+      --transition-duration: 2s;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'EB Garamond', Georgia, serif;
+      transition:
+        background-color var(--transition-duration) ease,
+        color var(--transition-duration) ease;
+      overflow: hidden;
+    }
+
+    body.day {
+      --bg: #f7f5f0;
+      --text: #1a1917;
+      --sub: #7a7672;
+    }
+
+    body.night {
+      --bg: #0f0e0d;
+      --text: #e8e4dc;
+      --sub: #5a5652;
+    }
+
+    /* Subtle grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .clock-wrap {
+      position: absolute;
+      top: 40%;
+      left: 30%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.08em;
+      opacity: 0;
+      animation: fadeIn 1.2s ease forwards;
+      animation-delay: 0.3s;
+    }
+
+    .time-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.3em;
+    }
+
+    .time {
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1;
+      color: var(--text);
+      transition: color var(--transition-duration) ease;
+      font-variant-numeric: tabular-nums;
+    }
+
+
+    .date {
+      font-size: clamp(1.1rem, 2.5vw, 2rem);
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: 0.04em;
+      color: var(--sub);
+      transition: color var(--transition-duration) ease;
+      padding-left: 0.1em;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* Seconds bar */
+    .seconds-bar-track {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      z-index: 10;
+      background: transparent;
+    }
+
+    .seconds-bar-fill {
+      height: 100%;
+      width: 0%;
+      background-color: #4CB7E1;
+      transition: background-color var(--transition-duration) ease;
+    }
+  </style>
 </head>
 <body>
 
-<header class="site-header-bar">
-  <div class="header-inner">
-    <div class="site-header">
-      <a href="index.html">Scott | Logbook</a>
+  <div class="clock-wrap">
+    <div class="time-row">
+      <div class="time" id="zulu-time">--:--</div>
+
     </div>
-    <div class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></div>
-    <nav class="header-nav" id="header-nav">
-      <a href="data.html">Data</a>
-      <a href="about.html">About</a>
-    </nav>
-  </div>
-</header>
-
-
-
-<div class="logbook-section">
-  <div class="card">
-    <div class="card-title">Network hours</div>
-    <div class="card-body">
-      <div><span class="label">VATSIM:</span> <span id="vatsim-hours">...</span></div>
-      <div><span class="label">IVAO:</span> 344.67</div>
-    </div>
+    <div class="date" id="zulu-date">--</div>
   </div>
 
-  <div class="map-wrapper">
-    <iframe src="map.html" width="100%" height="400"></iframe>
+  <div class="seconds-bar-track">
+    <div class="seconds-bar-fill" id="seconds-bar"></div>
   </div>
-</div>
 
-<!-- Section 7: Footer -->
+  <script>
+    const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
-<footer class="site-footer-bar">
-  <div class="footer-inner">
-    <div>
-      <a href="https://vatsim-radar.com/?pilot=1480399" target="_blank">
-        © 2020 – 2026
-      </a>
-    </div>
+    function pad(n) { return String(n).padStart(2, '0'); }
 
-    <div class="footer-icons">
-      <a href="https://vatsim-radar.com/?pilot=1480399" target="_blank"><i class="fa-solid fa-plane-up"></i></a>
-      <a href="https://twitch.tv/hearssay" target="_blank"><i class="fa-brands fa-twitch"></i></a>
-      <a href="https://www.tiktok.com/@hearsssay" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-      <a href="https://www.instagram.com/hearssay/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-      <a href="https://x.com/hearsssay" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-    </div>
+    function formatDate(d) {
+      const day = pad(d.getUTCDate());
+      const mon = MONTHS[d.getUTCMonth()];
+      const yr  = String(d.getUTCFullYear()).slice(-2);
+      return `${day}${mon}${yr}`;
+    }
 
-    <div>
-      <span id="ct"></span>
-    </div>
-  </div>
-</footer>
-  
-</div>
-<div id="vatsim-tooltip" class="vatsim-tooltip"></div>
+    function tick() {
+      const now = new Date();
+      const h = now.getUTCHours();
+      const m = now.getUTCMinutes();
+      const s = now.getUTCSeconds();
+
+      document.title = `${pad(h)}:${pad(m)} z`;
+      document.getElementById('zulu-time').textContent = `${pad(h)}:${pad(m)}`;
+      document.getElementById('zulu-date').textContent = formatDate(now);
+      document.getElementById('seconds-bar').style.width = `${(s / 59) * 100}%`;
+    }
+
+    tick();
+    setInterval(tick, 1000);
+
+    // --- Day / Night based on LOCAL sun position ---
+    function applyTheme(isDay) {
+      document.body.classList.remove('day', 'night');
+      document.body.classList.add(isDay ? 'day' : 'night');
+    }
+
+    function themeFromHour(hour) {
+      applyTheme(hour >= 6 && hour < 20);
+    }
+
+    function sunriseSet(lat, lng, date) {
+      const rad = Math.PI / 180;
+      const deg = 180 / Math.PI;
+      const JD  = date.getTime() / 86400000 + 2440587.5;
+      const n   = Math.ceil(JD - 2451545.0 + 0.0008);
+      const Js  = n - lng / 360;
+      const M   = (357.5291 + 0.98560028 * Js) % 360;
+      const C   = 1.9148 * Math.sin(M * rad)
+                + 0.0200 * Math.sin(2 * M * rad)
+                + 0.0003 * Math.sin(3 * M * rad);
+      const lam = (M + C + 180 + 102.9372) % 360;
+      const Jt  = 2451545.0 + Js + 0.0053 * Math.sin(M * rad)
+                - 0.0069 * Math.sin(2 * lam * rad);
+      const sinDec = Math.sin(lam * rad) * Math.sin(23.4397 * rad);
+      const cosDec = Math.cos(Math.asin(sinDec));
+      const cosH0  = (Math.sin(-0.833 * rad) - Math.sin(lat * rad) * sinDec)
+                   / (Math.cos(lat * rad) * cosDec);
+      if (cosH0 < -1) return { alwaysDay: true };
+      if (cosH0 >  1) return { alwaysNight: true };
+      const H0     = Math.acos(cosH0) * deg;
+      const toDate = jd => new Date((jd - 2440587.5) * 86400000);
+      return { sunrise: toDate(Jt - H0 / 360), sunset: toDate(Jt + H0 / 360) };
+    }
+
+    function applyThemeFromCoords(lat, lng) {
+      const now    = new Date();
+      const result = sunriseSet(lat, lng, now);
+      if (result.alwaysDay)   { applyTheme(true);  return; }
+      if (result.alwaysNight) { applyTheme(false); return; }
+      applyTheme(now >= result.sunrise && now < result.sunset);
+      const next = now < result.sunrise ? result.sunrise
+                 : now < result.sunset  ? result.sunset
+                 : null;
+      if (next) setTimeout(() => applyThemeFromCoords(lat, lng), next - now + 5000);
+    }
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        pos => applyThemeFromCoords(pos.coords.latitude, pos.coords.longitude),
+        ()  => themeFromHour(new Date().getHours())
+      );
+    } else {
+      themeFromHour(new Date().getHours());
+    }
+  </script>
 </body>
 </html>
