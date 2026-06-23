@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Zulu Time</title>
+
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+
   <style>
     *, *::before, *::after {
       margin: 0;
@@ -41,6 +44,7 @@
       --sub: #7a7672;
     }
 
+    /* Kept for future use */
     body.night {
       --bg: #0f0e0d;
       --text: #e8e4dc;
@@ -89,7 +93,6 @@
       font-variant-numeric: tabular-nums;
     }
 
-
     .date {
       font-size: clamp(1.1rem, 2.5vw, 2rem);
       font-weight: 400;
@@ -101,7 +104,9 @@
     }
 
     @keyframes fadeIn {
-      to { opacity: 1; }
+      to {
+        opacity: 1;
+      }
     }
 
     /* Seconds bar */
@@ -128,8 +133,8 @@
   <div class="clock-wrap">
     <div class="time-row">
       <div class="time" id="zulu-time">--:--</div>
-
     </div>
+
     <div class="date" id="zulu-date">--</div>
   </div>
 
@@ -138,9 +143,14 @@
   </div>
 
   <script>
-    const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const MONTHS = [
+      'Jan','Feb','Mar','Apr','May','Jun',
+      'Jul','Aug','Sep','Oct','Nov','Dec'
+    ];
 
-    function pad(n) { return String(n).padStart(2, '0'); }
+    function pad(n) {
+      return String(n).padStart(2, '0');
+    }
 
     function formatDate(d) {
       const day = pad(d.getUTCDate());
@@ -151,73 +161,30 @@
 
     function tick() {
       const now = new Date();
+
       const h = now.getUTCHours();
       const m = now.getUTCMinutes();
       const s = now.getUTCSeconds();
 
       document.title = `${pad(h)}:${pad(m)} z`;
-      document.getElementById('zulu-time').textContent = `${pad(h)}:${pad(m)}`;
-      document.getElementById('zulu-date').textContent = formatDate(now);
-      document.getElementById('seconds-bar').style.width = `${(s / 59) * 100}%`;
+
+      document.getElementById('zulu-time').textContent =
+        `${pad(h)}:${pad(m)}`;
+
+      document.getElementById('zulu-date').textContent =
+        formatDate(now);
+
+      document.getElementById('seconds-bar').style.width =
+        `${(s / 59) * 100}%`;
     }
 
     tick();
     setInterval(tick, 1000);
 
-    // --- Day / Night based on LOCAL sun position ---
-    function applyTheme(isDay) {
-      document.body.classList.remove('day', 'night');
-      document.body.classList.add(isDay ? 'day' : 'night');
-    }
-
-    function themeFromHour(hour) {
-      applyTheme(hour >= 6 && hour < 20);
-    }
-
-    function sunriseSet(lat, lng, date) {
-      const rad = Math.PI / 180;
-      const deg = 180 / Math.PI;
-      const JD  = date.getTime() / 86400000 + 2440587.5;
-      const n   = Math.ceil(JD - 2451545.0 + 0.0008);
-      const Js  = n - lng / 360;
-      const M   = (357.5291 + 0.98560028 * Js) % 360;
-      const C   = 1.9148 * Math.sin(M * rad)
-                + 0.0200 * Math.sin(2 * M * rad)
-                + 0.0003 * Math.sin(3 * M * rad);
-      const lam = (M + C + 180 + 102.9372) % 360;
-      const Jt  = 2451545.0 + Js + 0.0053 * Math.sin(M * rad)
-                - 0.0069 * Math.sin(2 * lam * rad);
-      const sinDec = Math.sin(lam * rad) * Math.sin(23.4397 * rad);
-      const cosDec = Math.cos(Math.asin(sinDec));
-      const cosH0  = (Math.sin(-0.833 * rad) - Math.sin(lat * rad) * sinDec)
-                   / (Math.cos(lat * rad) * cosDec);
-      if (cosH0 < -1) return { alwaysDay: true };
-      if (cosH0 >  1) return { alwaysNight: true };
-      const H0     = Math.acos(cosH0) * deg;
-      const toDate = jd => new Date((jd - 2440587.5) * 86400000);
-      return { sunrise: toDate(Jt - H0 / 360), sunset: toDate(Jt + H0 / 360) };
-    }
-
-    function applyThemeFromCoords(lat, lng) {
-      const now    = new Date();
-      const result = sunriseSet(lat, lng, now);
-      if (result.alwaysDay)   { applyTheme(true);  return; }
-      if (result.alwaysNight) { applyTheme(false); return; }
-      applyTheme(now >= result.sunrise && now < result.sunset);
-      const next = now < result.sunrise ? result.sunrise
-                 : now < result.sunset  ? result.sunset
-                 : null;
-      if (next) setTimeout(() => applyThemeFromCoords(lat, lng), next - now + 5000);
-    }
-
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        pos => applyThemeFromCoords(pos.coords.latitude, pos.coords.longitude),
-        ()  => themeFromHour(new Date().getHours())
-      );
-    } else {
-      themeFromHour(new Date().getHours());
-    }
+    // Force permanent day mode
+    document.body.classList.add('day');
   </script>
+
 </body>
 </html>
+```
